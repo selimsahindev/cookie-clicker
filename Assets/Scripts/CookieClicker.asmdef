@@ -1,0 +1,6 @@
+{
+    "name": "CookieClicker",
+    "rootNamespace": "CookieClicker",
+    "references": ["Unity.TextMeshPro", "UnityEngine.UI"],
+    "autoReferenced": true
+}

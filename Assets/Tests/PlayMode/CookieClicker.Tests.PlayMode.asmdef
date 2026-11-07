@@ -1,0 +1,10 @@
+{
+    "name": "CookieClicker.Tests.PlayMode",
+    "rootNamespace": "CookieClicker.Tests",
+    "references": ["CookieClicker", "UnityEngine.TestRunner", "UnityEditor.TestRunner"],
+    "optionalUnityReferences": [],
+    "precompiledReferences": ["nunit.framework.dll"],
+    "overrideReferences": true,
+    "defineConstraints": ["UNITY_INCLUDE_TESTS"],
+    "autoReferenced": false
+}

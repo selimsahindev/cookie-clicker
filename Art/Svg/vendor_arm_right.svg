@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="130" viewBox="0 0 120 130">
+  <!-- Pivot at the shoulder (60, 12). Holds a whisk. -->
+  <path d="M60 12 L62 84" stroke="#4A2E22" stroke-width="24" stroke-linecap="round"/>
+  <path d="M60 12 L62 84" stroke="#FFD9B8" stroke-width="16" stroke-linecap="round"/>
+  <path d="M64 90 L82 104" stroke="#8A5E44" stroke-width="8" stroke-linecap="round"/>
+  <path d="M82 104 Q76 128 96 126 Q112 122 98 104 Q92 96 82 104 Z" fill="none" stroke="#B7A79A" stroke-width="4"/>
+  <path d="M82 104 Q92 112 96 126" fill="none" stroke="#B7A79A" stroke-width="3"/>
+  <circle cx="62" cy="86" r="12" fill="#FFD9B8" stroke="#4A2E22" stroke-width="4"/>
+</svg>

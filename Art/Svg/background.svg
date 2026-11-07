@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#9FD3EC"/>
+      <stop offset="0.75" stop-color="#D9EEF2"/>
+      <stop offset="1" stop-color="#FFF1DC"/>
+    </linearGradient>
+    <linearGradient id="grass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#B7D98F"/>
+      <stop offset="1" stop-color="#9CC97A"/>
+    </linearGradient>
+    <pattern id="paving" width="120" height="70" patternUnits="userSpaceOnUse">
+      <rect width="120" height="70" fill="#EED7B4"/>
+      <path d="M0 0 H120 M0 35 H120 M30 0 V35 M90 35 V70" stroke="#D9B98E" stroke-width="4"/>
+    </pattern>
+    <pattern id="cobble" width="70" height="50" patternUnits="userSpaceOnUse">
+      <rect width="70" height="50" fill="#E3C49B"/>
+      <rect x="4" y="4" width="28" height="18" rx="8" fill="#EDD3AE"/>
+      <rect x="38" y="4" width="28" height="18" rx="8" fill="#EDD3AE"/>
+      <rect x="-14" y="28" width="28" height="18" rx="8" fill="#EDD3AE"/>
+      <rect x="20" y="28" width="28" height="18" rx="8" fill="#EDD3AE"/>
+      <rect x="56" y="28" width="28" height="18" rx="8" fill="#EDD3AE"/>
+    </pattern>
+  </defs>
+  <!-- sky -->
+  <rect width="1080" height="780" fill="url(#sky)"/>
+  <g transform="translate(170 190)">
+    <circle r="110" fill="#FFE9A8" opacity="0.5"/>
+    <circle r="74" fill="#FFD66B" stroke="#F2B544" stroke-width="6"/>
+    <circle cx="-22" cy="-6" r="6" fill="#B9774A"/>
+    <circle cx="22" cy="-6" r="6" fill="#B9774A"/>
+    <path d="M-20 18 Q0 34 20 18" fill="none" stroke="#B9774A" stroke-width="6" stroke-linecap="round"/>
+    <ellipse cx="-40" cy="12" rx="10" ry="6" fill="#F7A9A0" opacity="0.8"/>
+    <ellipse cx="40" cy="12" rx="10" ry="6" fill="#F7A9A0" opacity="0.8"/>
+  </g>
+  <g fill="#FFFFFF">
+    <g transform="translate(640 150)"><ellipse cx="0" cy="20" rx="110" ry="36"/><circle cx="-40" cy="0" r="44"/><circle cx="30" cy="-10" r="56"/></g>
+    <g transform="translate(900 360)" opacity="0.9"><ellipse cx="0" cy="14" rx="80" ry="26"/><circle cx="-24" cy="0" r="32"/><circle cx="22" cy="-6" r="40"/></g>
+    <g transform="translate(380 420)" opacity="0.8"><ellipse cx="0" cy="10" rx="64" ry="20"/><circle cx="-16" cy="0" r="24"/><circle cx="18" cy="-4" r="30"/></g>
+  </g>
+  <!-- hills and trees -->
+  <path d="M0 640 Q200 520 420 610 Q640 500 860 590 Q980 540 1080 580 V800 H0 Z" fill="#CBE3A8"/>
+  <path d="M0 700 Q260 600 520 690 Q780 610 1080 680 V800 H0 Z" fill="#B3D68E"/>
+  <g stroke="#4A2E22" stroke-width="5">
+    <rect x="96" y="640" width="18" height="90" rx="6" fill="#8A5E44"/>
+    <circle cx="105" cy="610" r="62" fill="#8CC07A"/>
+    <rect x="886" y="620" width="18" height="110" rx="6" fill="#8A5E44"/>
+    <circle cx="895" cy="590" r="70" fill="#7DB56C"/>
+    <rect x="466" y="670" width="14" height="70" rx="5" fill="#8A5E44"/>
+    <circle cx="473" cy="650" r="44" fill="#9ACB86"/>
+  </g>
+  <g fill="#7DB56C" stroke="#4A2E22" stroke-width="5">
+    <path d="M220 760 Q220 712 262 712 Q290 690 318 712 Q356 712 356 760 Z"/>
+    <path d="M640 760 Q640 720 676 720 Q700 700 726 720 Q760 720 760 760 Z"/>
+  </g>
+  <!-- sidewalk where customers walk -->
+  <rect y="756" width="1080" height="16" fill="#C9A77E"/>
+  <rect y="772" width="1080" height="180" fill="url(#paving)"/>
+  <rect y="950" width="1080" height="16" fill="#C9A77E"/>
+  <!-- lawn -->
+  <rect y="966" width="1080" height="954" fill="url(#grass)"/>
+  <g fill="#9CC97A" stroke="#7FB062" stroke-width="4" stroke-linecap="round">
+    <path d="M90 1120 l10 -22 l10 22 M820 1060 l10 -22 l10 22 M960 1300 l10 -22 l10 22 M120 1780 l10 -22 l10 22 M900 1760 l10 -22 l10 22 M60 1420 l10 -22 l10 22"/>
+  </g>
+  <!-- cobblestone patch for the vendor -->
+  <ellipse cx="540" cy="1420" rx="500" ry="380" fill="url(#cobble)" stroke="#C9A77E" stroke-width="10"/>
+  <!-- flowers -->
+  <g stroke="#4A2E22" stroke-width="3">
+    <g transform="translate(940 1100)"><circle r="12" fill="#F4A7A0"/><circle r="5" fill="#FFD66B"/></g>
+    <g transform="translate(980 1140)"><circle r="12" fill="#FFFBF4"/><circle r="5" fill="#FFD66B"/></g>
+    <g transform="translate(70 1640)"><circle r="12" fill="#C9A7E0"/><circle r="5" fill="#FFD66B"/></g>
+    <g transform="translate(110 1690)"><circle r="12" fill="#F4A7A0"/><circle r="5" fill="#FFD66B"/></g>
+    <g transform="translate(1000 1820)"><circle r="12" fill="#FFFBF4"/><circle r="5" fill="#FFD66B"/></g>
+  </g>
+  <!-- street lamp -->
+  <g stroke="#4A2E22" stroke-width="5">
+    <rect x="1000" y="560" width="16" height="220" rx="6" fill="#5B3A29"/>
+    <rect x="984" y="770" width="48" height="16" rx="6" fill="#5B3A29"/>
+    <path d="M980 560 L1036 560 L1024 520 L992 520 Z" fill="#FFE08A"/>
+    <rect x="986" y="506" width="44" height="16" rx="6" fill="#5B3A29"/>
+  </g>
+</svg>

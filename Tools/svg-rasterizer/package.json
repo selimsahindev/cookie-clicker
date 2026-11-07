@@ -1,0 +1,11 @@
+{
+  "name": "svg-rasterizer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node rasterize.mjs"
+  },
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2"
+  }
+}

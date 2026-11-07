@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="130" viewBox="0 0 120 130">
+  <!-- Pivot at the shoulder (60, 12). Holds a mixing bowl. -->
+  <path d="M60 12 L58 84" stroke="#4A2E22" stroke-width="24" stroke-linecap="round"/>
+  <path d="M60 12 L58 84" stroke="#FFD9B8" stroke-width="16" stroke-linecap="round"/>
+  <path d="M18 88 H102 Q100 124 60 124 Q20 124 18 88 Z" fill="#9CC9E8" stroke="#4A2E22" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M26 98 H94" stroke="#FFFBF4" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+  <ellipse cx="60" cy="88" rx="42" ry="9" fill="#F3D9A8" stroke="#4A2E22" stroke-width="4"/>
+  <ellipse cx="50" cy="86" rx="12" ry="4" fill="#E8B36F"/>
+  <circle cx="58" cy="86" r="12" fill="#FFD9B8" stroke="#4A2E22" stroke-width="4"/>
+</svg>

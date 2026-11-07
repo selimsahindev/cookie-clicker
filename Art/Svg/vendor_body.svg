@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="300" viewBox="0 0 220 300">
+  <!-- Young vendor seen from behind. Arms are separate sprites so they can be animated. -->
+  <!-- sneakers -->
+  <path d="M60 296 Q58 280 74 278 H96 Q102 280 102 296 Z" fill="#FFFBF4" stroke="#4A2E22" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M118 296 Q118 280 124 278 H146 Q162 280 160 296 Z" fill="#FFFBF4" stroke="#4A2E22" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M60 290 H102 M118 290 H160" stroke="#E86F6F" stroke-width="4"/>
+  <!-- jeans -->
+  <path d="M68 226 H152 L150 280 H122 L112 246 H108 L98 280 H70 Z" fill="#6E8FB5" stroke="#4A2E22" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M110 232 V246" stroke="#4A2E22" stroke-width="3"/>
+  <rect x="80" y="236" width="20" height="16" rx="4" fill="#5E7EA3" stroke="#4A2E22" stroke-width="2.5"/>
+  <rect x="120" y="236" width="20" height="16" rx="4" fill="#5E7EA3" stroke="#4A2E22" stroke-width="2.5"/>
+  <!-- t-shirt -->
+  <path d="M66 162 Q110 148 154 162 L156 232 Q110 240 64 232 Z" fill="#7FBFAE" stroke="#4A2E22" stroke-width="4" stroke-linejoin="round"/>
+  <!-- sleeves -->
+  <path d="M68 160 Q46 164 40 186 L62 196 Q66 180 72 176 Z" fill="#7FBFAE" stroke="#4A2E22" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M152 160 Q174 164 180 186 L158 196 Q154 180 148 176 Z" fill="#7FBFAE" stroke="#4A2E22" stroke-width="4" stroke-linejoin="round"/>
+  <!-- little cookie print on the back of the shirt -->
+  <circle cx="110" cy="198" r="16" fill="#E8B36F" stroke="#4A2E22" stroke-width="3"/>
+  <circle cx="104" cy="193" r="3" fill="#5B3A29"/><circle cx="116" cy="196" r="3" fill="#5B3A29"/><circle cx="108" cy="205" r="3" fill="#5B3A29"/>
+  <!-- neck -->
+  <rect x="98" y="138" width="24" height="22" rx="8" fill="#FFD9B8" stroke="#4A2E22" stroke-width="3.5"/>
+  <!-- ears -->
+  <ellipse cx="62" cy="104" rx="11" ry="15" fill="#FFD9B8" stroke="#4A2E22" stroke-width="4"/>
+  <ellipse cx="158" cy="104" rx="11" ry="15" fill="#FFD9B8" stroke="#4A2E22" stroke-width="4"/>
+  <ellipse cx="62" cy="106" rx="4" ry="7" fill="#F7A9A0"/>
+  <ellipse cx="158" cy="106" rx="4" ry="7" fill="#F7A9A0"/>
+  <!-- head: light brown, a bit messy hair seen from behind -->
+  <path d="M60 96 Q58 44 110 40 Q162 44 160 96 Q160 132 132 144 Q110 150 88 144 Q60 132 60 96 Z" fill="#C49A6C" stroke="#4A2E22" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M74 50 Q70 30 92 34 Q98 18 114 26 Q128 14 138 32 Q160 30 152 52" fill="#C49A6C" stroke="#4A2E22" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M76 140 L84 128 L92 142 L102 130 L110 146 L118 130 L128 142 L136 128 L144 138" fill="#C49A6C" stroke="#4A2E22" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M86 70 Q96 92 90 116 M112 60 Q118 90 112 124 M136 70 Q128 94 134 116" fill="none" stroke="#DDB98C" stroke-width="5" stroke-linecap="round"/>
+  <path d="M104 44 Q112 52 106 62" fill="none" stroke="#A47C52" stroke-width="4" stroke-linecap="round"/>
+</svg>
