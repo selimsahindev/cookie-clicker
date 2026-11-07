@@ -12,8 +12,10 @@ using static CookieClicker.EditorTools.BuildHelpers;
 namespace CookieClicker.EditorTools
 {
     /// <summary>
-    /// Builds the street-vendor scene from the sprites in Assets/Art/Sprites.
-    /// Run from the menu or the command line:
+    /// Creates the street-vendor scene from the sprites in Assets/Art/Sprites.
+    /// The scene is generated only once. After that it belongs to the editor, so manual changes are never overwritten
+    /// unless you explicitly reset it.
+    /// Command line:
     /// Unity -batchmode -quit -projectPath . -executeMethod CookieClicker.EditorTools.SceneBuilder.Build
     /// </summary>
     public static class SceneBuilder
@@ -23,15 +25,53 @@ namespace CookieClicker.EditorTools
         private const float BakerScale = 1.3f;
         private const float CustomerLineY = 1.0f;
 
-        [MenuItem("Cookie Clicker/Rebuild Bakery Scene")]
+        /// <summary>Creates whatever is missing (prefabs, scene) and leaves existing assets untouched.</summary>
+        [MenuItem("Cookie Clicker/Create Missing Content")]
         public static void Build()
         {
-            EditorSettings.defaultBehaviorMode = EditorBehaviorMode.Mode2D;
-            PlayerSetup.ConfigurePortrait();
+            ConfigureProject();
+            PrefabBuilder.BuildMissing();
+
+            if (File.Exists(ScenePath))
+            {
+                Debug.Log($"{ScenePath} already exists and was left untouched. Use 'Cookie Clicker/Reset Bakery Scene...' to regenerate it.");
+                return;
+            }
+
+            BuildScene();
+            Debug.Log("Bakery scene created.");
+        }
+
+        [MenuItem("Cookie Clicker/Reset Bakery Scene...")]
+        private static void ResetFromMenu()
+        {
+            bool confirmed = EditorUtility.DisplayDialog(
+                "Reset Bakery Scene",
+                "This regenerates the scene, the prefabs and the sprite import settings from code.\n\nEvery manual change to them will be lost.",
+                "Reset",
+                "Cancel");
+            if (!confirmed)
+            {
+                return;
+            }
+
+            Reset();
+        }
+
+        /// <summary>Regenerates everything from code, discarding manual changes. Also callable from the command line.</summary>
+        public static void Reset()
+        {
+            ConfigureProject();
             SpriteImportSetup.ConfigureAll();
             PrefabBuilder.BuildAll();
             BuildScene();
-            Debug.Log("Bakery scene built.");
+            Debug.Log("Bakery scene reset.");
+        }
+
+        private static void ConfigureProject()
+        {
+            EditorSettings.defaultBehaviorMode = EditorBehaviorMode.Mode2D;
+            PlayerSetup.ConfigurePortrait();
         }
 
         private static void BuildScene()

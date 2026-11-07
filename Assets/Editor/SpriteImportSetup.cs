@@ -22,6 +22,18 @@ namespace CookieClicker.EditorTools
         private static void Configure(string path)
         {
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
+            Apply(importer, path);
+            importer.SaveAndReimport();
+        }
+
+        public static bool IsGameSprite(string path)
+        {
+            return path.StartsWith(BuildHelpers.SpritesFolder + "/");
+        }
+
+        /// <summary>Writes the sprite settings into the importer without reimporting.</summary>
+        public static void Apply(TextureImporter importer, string path)
+        {
             importer.textureType = TextureImporterType.Sprite;
             importer.spriteImportMode = SpriteImportMode.Single;
             importer.spritePixelsPerUnit = PixelsPerUnit;
@@ -37,7 +49,6 @@ namespace CookieClicker.EditorTools
             settings.spriteAlignment = (int)SpriteAlignment.Custom;
             importer.SetTextureSettings(settings);
             importer.spritePivot = PivotFor(Path.GetFileNameWithoutExtension(path));
-            importer.SaveAndReimport();
         }
 
         private static Vector2 PivotFor(string spriteName)

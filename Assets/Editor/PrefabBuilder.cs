@@ -28,6 +28,26 @@ namespace CookieClicker.EditorTools
             BuildMoneyPopup();
         }
 
+        /// <summary>Builds only the prefabs that do not exist yet, so manual edits are kept.</summary>
+        public static void BuildMissing()
+        {
+            EnsureFolder(PrefabsFolder);
+            if (!Exists(CustomerPrefabPath))
+            {
+                BuildCustomer();
+            }
+
+            if (!Exists(MoneyPopupPrefabPath))
+            {
+                BuildMoneyPopup();
+            }
+        }
+
+        private static bool Exists(string assetPath)
+        {
+            return AssetDatabase.LoadAssetAtPath<GameObject>(assetPath) != null;
+        }
+
         private static void BuildCustomer()
         {
             var root = new GameObject("Customer");
