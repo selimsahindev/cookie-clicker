@@ -11,6 +11,7 @@ namespace CookieClicker.EditorTools
     {
         public const string SpritesFolder = "Assets/Art/Sprites";
         public const string PrefabsFolder = "Assets/Prefabs";
+        public const string ScenePath = "Assets/Scenes/Bakery.unity";
 
         public static class Palette
         {
@@ -18,6 +19,8 @@ namespace CookieClicker.EditorTools
             public static readonly Color RingTrack = new Color32(0x4A, 0x2E, 0x22, 0x55);
             public static readonly Color RingFill = new Color32(0xE8, 0x6F, 0x6F, 0xFF);
             public static readonly Color Sky = new Color32(0x9F, 0xD3, 0xEC, 0xFF);
+            public static readonly Color Caramel = new Color32(0xB9, 0x77, 0x4A, 0xFF);
+            public static readonly Color MoneyInk = new Color32(0x2F, 0x4A, 0x30, 0xFF);
         }
 
         public static class SortingOrder

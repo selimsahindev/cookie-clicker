@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <!-- stopwatch with a cookie face -->
+  <path d="M14 46 H34 M8 60 H30 M14 74 H34" stroke="#F4A7A0" stroke-width="7" stroke-linecap="round"/>
+  <rect x="62" y="6" width="20" height="14" rx="5" fill="#E86F6F" stroke="#4A2E22" stroke-width="4"/>
+  <path d="M96 26 L104 18" stroke="#4A2E22" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="72" cy="66" r="44" fill="#E8B36F" stroke="#4A2E22" stroke-width="5"/>
+  <circle cx="72" cy="66" r="34" fill="#FFFBF4" stroke="#4A2E22" stroke-width="4"/>
+  <path d="M72 66 V42 M72 66 L88 74" stroke="#4A2E22" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="72" cy="66" r="5" fill="#E86F6F"/>
+  <circle cx="54" cy="50" r="3" fill="#5B3A29"/><circle cx="92" cy="54" r="3" fill="#5B3A29"/><circle cx="58" cy="86" r="3" fill="#5B3A29"/>
+</svg>

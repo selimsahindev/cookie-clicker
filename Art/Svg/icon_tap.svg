@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <!-- tapping finger with impact rings -->
+  <circle cx="48" cy="34" r="24" fill="none" stroke="#F4A7A0" stroke-width="5" opacity="0.6"/>
+  <circle cx="48" cy="34" r="14" fill="none" stroke="#E86F6F" stroke-width="5"/>
+  <path d="M40 34 Q40 26 48 26 Q56 26 56 34 V62 L64 58 Q72 56 74 62 L76 66 Q84 62 88 68 L90 72 Q98 70 100 78 L102 96 Q104 112 88 114 H62 Q50 114 44 102 L30 78 Q26 70 34 68 Q38 68 40 72 Z" fill="#FFD9B8" stroke="#4A2E22" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M64 70 V82 M76 70 V84 M88 76 V88" stroke="#E0B08A" stroke-width="4" stroke-linecap="round"/>
+</svg>

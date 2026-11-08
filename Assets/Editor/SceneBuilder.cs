@@ -20,7 +20,6 @@ namespace CookieClicker.EditorTools
     /// </summary>
     public static class SceneBuilder
     {
-        private const string ScenePath = "Assets/Scenes/Bakery.unity";
         private const string LineMaterialPath = "Assets/Art/Materials/ProgressRing.mat";
         private const float BakerScale = 1.3f;
         private const float CustomerLineY = 1.0f;
@@ -30,6 +29,7 @@ namespace CookieClicker.EditorTools
         public static void Build()
         {
             ConfigureProject();
+            SpriteImportSetup.ConfigureUnconfigured();
             PrefabBuilder.BuildMissing();
 
             if (File.Exists(ScenePath))
@@ -88,6 +88,7 @@ namespace CookieClicker.EditorTools
             CookieServer server = CreateCustomers(table);
             (Wallet wallet, CashRegister cashRegister) = CreateEconomy(server);
             HudBuilder.Build(camera, wallet, cashRegister);
+            UpgradeInstaller.Install();
 
             EnsureFolder(Path.GetDirectoryName(ScenePath));
             EditorSceneManager.SaveScene(scene, ScenePath);

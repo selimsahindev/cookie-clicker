@@ -5,6 +5,8 @@ using CookieClicker.Baking;
 using CookieClicker.Customers;
 using CookieClicker.Economy;
 using CookieClicker.Table;
+using CookieClicker.Upgrades;
+using CookieClicker.Upgrades.Effects;
 using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -81,6 +83,43 @@ namespace CookieClicker.Tests
             baker.Boost();
 
             Assert.AreEqual(before + baker.ClickBoost, baker.Progress, 0.001f);
+        }
+
+        [UnityTest]
+        public IEnumerator BuyingBakeSpeedSpendsMoneyAndSpeedsUpBaking()
+        {
+            yield return SceneManager.LoadSceneAsync(SceneName);
+            yield return null;
+
+            var shop = UnityEngine.Object.FindAnyObjectByType<UpgradeShop>();
+            var wallet = UnityEngine.Object.FindAnyObjectByType<Wallet>();
+            var baker = UnityEngine.Object.FindAnyObjectByType<Baker>();
+            Upgrade bakeSpeed = UnityEngine.Object.FindAnyObjectByType<BakeSpeedEffect>().GetComponent<Upgrade>();
+            wallet.TrySpend(wallet.Balance);
+
+            float durationBefore = baker.BakeDuration;
+            long cost = bakeSpeed.Cost;
+            Assert.IsFalse(shop.TryBuy(bakeSpeed), "Should not be able to buy without money.");
+
+            wallet.Add(cost);
+            Assert.IsTrue(shop.TryBuy(bakeSpeed));
+
+            Assert.AreEqual(0, wallet.Balance);
+            Assert.AreEqual(UpgradeDefinition.StartingLevel + 1, bakeSpeed.Level);
+            Assert.Less(baker.BakeDuration, durationBefore);
+            Assert.Greater(bakeSpeed.Cost, cost, "Next level should cost more.");
+        }
+
+        [Test]
+        public void UpgradeCostGrowsBy15PercentPerLevel()
+        {
+            var definition = ScriptableObject.CreateInstance<UpgradeDefinition>();
+            definition.Configure("Test", null, 100, 1f, UpgradeDefinition.ValueGrowth.Multiply, 0.9f, "{0}");
+
+            Assert.AreEqual(100, definition.GetCost(1));
+            Assert.AreEqual(115, definition.GetCost(2));
+            Assert.AreEqual(132, definition.GetCost(3));
+            Assert.AreEqual(0.81f, definition.GetValue(3), 0.0001f);
         }
 
         private static void CaptureScreenshotIfRequested()

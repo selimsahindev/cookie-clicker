@@ -19,6 +19,20 @@ namespace CookieClicker.EditorTools
             }
         }
 
+        /// <summary>Configures only sprites that never got the project's settings, leaving tuned ones alone.</summary>
+        public static void ConfigureUnconfigured()
+        {
+            foreach (string guid in AssetDatabase.FindAssets("t:Texture2D", new[] { BuildHelpers.SpritesFolder }))
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                var importer = (TextureImporter)AssetImporter.GetAtPath(path);
+                if (!Mathf.Approximately(importer.spritePixelsPerUnit, PixelsPerUnit))
+                {
+                    Configure(path);
+                }
+            }
+        }
+
         private static void Configure(string path)
         {
             var importer = (TextureImporter)AssetImporter.GetAtPath(path);
@@ -60,6 +74,12 @@ namespace CookieClicker.EditorTools
                 case "shadow":
                 case "money":
                 case "hud_pill":
+                case "upgrade_card":
+                case "upgrade_cost":
+                case "icon_bake_speed":
+                case "icon_price":
+                case "icon_tap":
+                case "icon_customers":
                     return new Vector2(0.5f, 0.5f);
                 case "bubble":
                     return new Vector2(0.485f, 0.05f);

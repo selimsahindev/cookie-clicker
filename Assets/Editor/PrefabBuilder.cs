@@ -16,6 +16,7 @@ namespace CookieClicker.EditorTools
     {
         public const string CustomerPrefabPath = PrefabsFolder + "/Customer.prefab";
         public const string MoneyPopupPrefabPath = PrefabsFolder + "/MoneyPopup.prefab";
+        public const string UpgradeButtonPrefabPath = PrefabsFolder + "/UpgradeButton.prefab";
 
         private const string OutlinedFontMaterialPath = "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Outline.mat";
 
@@ -26,6 +27,7 @@ namespace CookieClicker.EditorTools
             EnsureFolder(PrefabsFolder);
             BuildCustomer();
             BuildMoneyPopup();
+            BuildUpgradeButton();
         }
 
         /// <summary>Builds only the prefabs that do not exist yet, so manual edits are kept.</summary>
@@ -40,6 +42,11 @@ namespace CookieClicker.EditorTools
             if (!Exists(MoneyPopupPrefabPath))
             {
                 BuildMoneyPopup();
+            }
+
+            if (!Exists(UpgradeButtonPrefabPath))
+            {
+                BuildUpgradeButton();
             }
         }
 
@@ -127,6 +134,76 @@ namespace CookieClicker.EditorTools
             SetReference(popup, "canvasGroup", canvasGroup);
 
             SaveAndDestroy(root, MoneyPopupPrefabPath);
+        }
+
+        private static void BuildUpgradeButton()
+        {
+            var root = new GameObject("UpgradeButton", typeof(RectTransform));
+            ((RectTransform)root.transform).sizeDelta = new Vector2(240f, 320f);
+            var card = root.AddComponent<Image>();
+            card.sprite = LoadSprite("upgrade_card");
+            var button = root.AddComponent<Button>();
+            button.targetGraphic = card;
+            ColorBlock colors = button.colors;
+            colors.pressedColor = new Color(0.9f, 0.85f, 0.8f);
+            colors.disabledColor = new Color(0.85f, 0.82f, 0.78f);
+            button.colors = colors;
+
+            TMP_Text nameLabel = CreateLabel(root.transform, "NameLabel", new Vector2(0f, -44f), new Vector2(220f, 44f), 28f, Palette.Ink);
+
+            RectTransform icon = CreateTopAnchored(root.transform, "Icon", new Vector2(0f, -122f), new Vector2(112f, 112f));
+            var iconImage = icon.gameObject.AddComponent<Image>();
+            iconImage.sprite = LoadSprite("icon_bake_speed");
+            iconImage.preserveAspect = true;
+            iconImage.raycastTarget = false;
+
+            TMP_Text levelLabel = CreateLabel(root.transform, "LevelLabel", new Vector2(0f, -196f), new Vector2(220f, 34f), 24f, Palette.Caramel);
+            TMP_Text valueLabel = CreateLabel(root.transform, "ValueLabel", new Vector2(0f, -230f), new Vector2(220f, 40f), 34f, Palette.Ink);
+
+            RectTransform costPill = CreateTopAnchored(root.transform, "Cost", new Vector2(0f, -280f), new Vector2(200f, 70f));
+            var costImage = costPill.gameObject.AddComponent<Image>();
+            costImage.sprite = LoadSprite("upgrade_cost");
+            costImage.raycastTarget = false;
+            var costGroup = costPill.gameObject.AddComponent<CanvasGroup>();
+            costGroup.blocksRaycasts = false;
+            TMP_Text costLabel = CreateLabel(costPill, "CostLabel", new Vector2(0f, -32f), new Vector2(190f, 50f), 32f, Palette.MoneyInk);
+
+            var pop = root.AddComponent<PopAnimation>();
+            SetFloat(pop, "strength", 0.08f);
+
+            var view = root.AddComponent<UpgradeButtonView>();
+            SetReference(view, "button", button);
+            SetReference(view, "icon", iconImage);
+            SetReference(view, "nameLabel", nameLabel);
+            SetReference(view, "levelLabel", levelLabel);
+            SetReference(view, "valueLabel", valueLabel);
+            SetReference(view, "costLabel", costLabel);
+            SetReference(view, "costGroup", costGroup);
+            SetReference(view, "pop", pop);
+
+            SaveAndDestroy(root, UpgradeButtonPrefabPath);
+        }
+
+        private static RectTransform CreateTopAnchored(Transform parent, string name, Vector2 position, Vector2 size)
+        {
+            RectTransform rect = CreateUiChild(parent, name, size);
+            rect.anchorMin = new Vector2(0.5f, 1f);
+            rect.anchorMax = new Vector2(0.5f, 1f);
+            rect.anchoredPosition = position;
+            return rect;
+        }
+
+        private static TMP_Text CreateLabel(Transform parent, string name, Vector2 position, Vector2 size, float fontSize, Color color)
+        {
+            RectTransform rect = CreateTopAnchored(parent, name, position, size);
+            var label = rect.gameObject.AddComponent<TextMeshProUGUI>();
+            label.fontSize = fontSize;
+            label.fontStyle = FontStyles.Bold;
+            label.color = color;
+            label.alignment = TextAlignmentOptions.Center;
+            label.textWrappingMode = TextWrappingModes.NoWrap;
+            label.raycastTarget = false;
+            return label;
         }
 
         private static void ApplyOutlinedFont(TMP_Text label)
