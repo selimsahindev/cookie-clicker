@@ -1,0 +1,62 @@
+# Economy tuning guide
+
+Where every balancing number lives and what it does.
+
+## Before you start: Play mode
+
+- **Changes to scene components in Play mode are lost** when you press Stop. Unity restores the scene. Use Play mode to try values, then copy the ones you like and set them again after stopping. Right-click a component, choose *Copy Component*, stop, then *Paste Component Values*.
+- **Changes to assets are kept**, even in Play mode. This covers the upgrade definitions in `Assets/Data/Upgrades`. You can tune them live while the game runs, and the result stays.
+
+## 1. Upgrades: `Assets/Data/Upgrades/*.asset`
+
+The four upgrades each have one `UpgradeDefinition` asset. Select one in the Project window to edit it in the Inspector.
+
+| Field | Meaning |
+|---|---|
+| Display Name | Text shown on the card. |
+| Icon | Sprite shown at the top of the card. |
+| Base Cost | Price of the first level-up (from Lv 1 to Lv 2). |
+| Cost Growth | Multiplier per level. `1.15` means every level costs 15% more. Price at level L = `Base Cost × Cost Growth^(L - 1)`. |
+| Max Level | Level cap. `0` means no cap. |
+| Base Value | The value at Lv 1, which is the game's starting value. |
+| Growth | `Add`: value = Base + Per Level × (L - 1). `Multiply`: value = Base × Per Level^(L - 1). |
+| Value Per Level | Step per level: an amount for `Add`, a factor for `Multiply`. |
+| Value Format | How the value is written on the card. `{0:0.00}s` → `1.35s`, `+{0:0%}` → `+25%`, `{0:0} $` → `3 $`. |
+
+Current setup:
+
+| Asset | Controls | Base | Per level | Base cost |
+|---|---|---|---|---|
+| BakeSpeed | Seconds per cookie | 1.5 s | × 0.9 (10% faster) | 10 $ |
+| CookiePrice | Money per sold cookie | 1 $ | + 1 $ | 25 $ |
+| TapPower | Share of a bake added per tap | 20% | + 5%, max Lv 17 (100%) | 15 $ |
+| Customers | Average seconds between new customers | 2.5 s | × 0.9 (10% more often) | 20 $ |
+
+> The upgrade's Lv 1 value **overrides** the same setting on the game component when play starts. To change the starting bake time, tap power, cookie price or customer rate, edit **Base Value** here, not the component.
+
+## 2. Scene components: `Assets/Scenes/Bakery.unity`
+
+Settings that no upgrade controls yet. Select the object in the Hierarchy.
+
+| Object → Component | Field | Meaning |
+|---|---|---|
+| CookieCart → Cookie Table | Capacity | How many cookies fit on the cart before the vendor waits. Default 10. |
+| Customers → Customer Queue | Max Length | How many customers can stand in line. Default 4. |
+| Customers → Customer Queue | Spacing | Distance between customers in the line. |
+| Customers → Customer Spawner | Min / Max Cookies Wanted | Each customer wants a random amount in this range. Default 1–5. |
+| Customers → Cookie Server | Serve Interval | Seconds between handing two cookies to the front customer. Default 0.35. |
+| Economy → Wallet | Starting Balance | Money at the start of the game. Default 0. |
+| Upgrades → Customers → Customer Attraction Effect | Spread | How random customer arrival is. `0.4` means ±40% around the average. |
+
+## 3. Prefabs: `Assets/Prefabs`
+
+| Prefab → Component | Field | Meaning |
+|---|---|---|
+| Customer → Character Walker | Speed | Walking speed of customers. |
+| UpgradeButton | (layout, colors) | Look of every upgrade card at once. |
+
+## Adding a new upgrade later
+
+1. Create a definition: *Assets → Create → Cookie Clicker → Upgrade Definition*.
+2. Write an effect, a small `UpgradeEffect` subclass in `Assets/Scripts/Upgrades/Effects` that pushes the value into a game system.
+3. Add a child under `Upgrades` in the scene with the effect and an `Upgrade` component. Then add an `UpgradeButton` prefab to `HUD/UpgradeBar` and point it at the upgrade and the shop.
