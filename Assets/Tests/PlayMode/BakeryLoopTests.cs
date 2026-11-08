@@ -110,6 +110,52 @@ namespace CookieClicker.Tests
             Assert.Greater(bakeSpeed.Cost, cost, "Next level should cost more.");
         }
 
+        [UnityTest]
+        public IEnumerator CustomerTakesWholeOrderAtOnceWhenEnoughCookiesAreReady()
+        {
+            yield return SceneManager.LoadSceneAsync(SceneName);
+
+            var baker = UnityEngine.Object.FindAnyObjectByType<Baker>();
+            var table = UnityEngine.Object.FindAnyObjectByType<CookieTable>();
+            var queue = UnityEngine.Object.FindAnyObjectByType<CustomerQueue>();
+            var server = UnityEngine.Object.FindAnyObjectByType<CookieServer>();
+            baker.enabled = false;
+            server.enabled = false;
+
+            Time.timeScale = 4f;
+            float timeout = 20f;
+            while ((queue.Front == null || !queue.Front.IsReadyToBeServed) && timeout > 0f)
+            {
+                timeout -= Time.deltaTime;
+                yield return null;
+            }
+
+            Time.timeScale = 1f;
+            Assert.IsNotNull(queue.Front, "A customer should reach the front of the line.");
+
+            Customer front = queue.Front;
+            int wanted = front.CookiesWanted;
+            table.Capacity = Mathf.Max(table.Capacity, wanted + 2);
+            for (int i = 0; i < wanted + 2; i++)
+            {
+                table.TryAddCookie();
+            }
+
+            int handOvers = 0;
+            int servedCount = 0;
+            server.CookiesServed += (_, count) =>
+            {
+                handOvers++;
+                servedCount += count;
+            };
+            server.enabled = true;
+            yield return null;
+
+            Assert.AreEqual(1, handOvers, "The whole order should be handed over in one go.");
+            Assert.AreEqual(wanted, servedCount);
+            Assert.AreEqual(2, table.Count);
+        }
+
         [Test]
         public void UpgradeCostGrowsBy15PercentPerLevel()
         {

@@ -5,7 +5,9 @@ using UnityEngine;
 namespace CookieClicker.Customers
 {
     /// <summary>
-    /// Hands cookies from the table to the customer at the front of the queue, one at a time.
+    /// Hands cookies from the table to the customer at the front of the queue.
+    /// The customer takes as many as they still need in one go; if the table runs short,
+    /// they take what is there and pick up the rest as new cookies come out.
     /// </summary>
     public class CookieServer : MonoBehaviour
     {
@@ -16,8 +18,8 @@ namespace CookieClicker.Customers
 
         private float timeSinceLastServe;
 
-        /// <summary>Raised for every cookie handed over. The economy can hook in here later.</summary>
-        public event Action<Customer> CookieServed;
+        /// <summary>Raised with (customer, cookie count) for every hand-over.</summary>
+        public event Action<Customer, int> CookiesServed;
 
         /// <summary>Raised when a customer has everything they wanted and starts walking away.</summary>
         public event Action<Customer> CustomerSatisfied;
@@ -44,14 +46,20 @@ namespace CookieClicker.Customers
                 return;
             }
 
-            if (timeSinceLastServe < serveInterval || !table.TryTakeCookie())
+            if (timeSinceLastServe < serveInterval)
+            {
+                return;
+            }
+
+            int served = table.TakeCookies(front.CookiesRemaining);
+            if (served == 0)
             {
                 return;
             }
 
             timeSinceLastServe = 0f;
-            front.ReceiveCookie();
-            CookieServed?.Invoke(front);
+            front.ReceiveCookies(served);
+            CookiesServed?.Invoke(front, served);
 
             if (front.IsSatisfied)
             {

@@ -46,16 +46,18 @@ namespace CookieClicker.Table
             return true;
         }
 
-        public bool TryTakeCookie()
+        /// <summary>Takes up to <paramref name="amount"/> cookies and returns how many were actually taken.</summary>
+        public int TakeCookies(int amount)
         {
-            if (!HasCookies)
+            int taken = Mathf.Clamp(amount, 0, count);
+            if (taken == 0)
             {
-                return false;
+                return 0;
             }
 
-            count--;
+            count -= taken;
             NotifyChanged();
-            return true;
+            return taken;
         }
 
         private void NotifyChanged()

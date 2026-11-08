@@ -20,7 +20,8 @@ namespace CookieClicker.Customers
 
         public int CookiesWanted { get; private set; }
         public int CookiesReceived { get; private set; }
-        public bool IsSatisfied => CookiesReceived >= CookiesWanted;
+        public int CookiesRemaining => Mathf.Max(0, CookiesWanted - CookiesReceived);
+        public bool IsSatisfied => CookiesRemaining == 0;
         public bool IsReadyToBeServed => !isLeaving && !IsSatisfied && walker.IsAtTarget;
 
         private void Awake()
@@ -41,14 +42,15 @@ namespace CookieClicker.Customers
             walker.WalkTo(destination);
         }
 
-        public void ReceiveCookie()
+        public void ReceiveCookies(int amount)
         {
-            if (IsSatisfied)
+            int accepted = Mathf.Min(amount, CookiesRemaining);
+            if (accepted <= 0)
             {
                 return;
             }
 
-            CookiesReceived++;
+            CookiesReceived += accepted;
             bubble.SetCount(CookiesReceived, CookiesWanted);
             bubble.PlayPop();
         }

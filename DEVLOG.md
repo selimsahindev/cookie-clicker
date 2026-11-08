@@ -4,6 +4,11 @@ Progress notes for the cookie clicker, newest first. Screenshots live in `docs/d
 
 ---
 
+## 2026-11-08 · Whole orders in one go
+
+- When a customer reaches the cart, they take their entire order at once if enough cookies are ready, and pay the total in a single "+n $" popup.
+- If the cart is short, they grab what is there and pick up the rest as fresh cookies come out of the oven.
+
 ## 2026-11-08 · Tastier cookies
 
 ![Old cookie on the left, new one on the right](docs/devlog/2026-11-08-cookie-redraw.png)

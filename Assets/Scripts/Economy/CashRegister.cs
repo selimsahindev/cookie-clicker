@@ -5,7 +5,7 @@ using UnityEngine;
 namespace CookieClicker.Economy
 {
     /// <summary>
-    /// Gets paid for every cookie handed to a customer and puts the money in the wallet.
+    /// Gets paid for the cookies handed to a customer and puts the money in the wallet.
     /// </summary>
     public class CashRegister : MonoBehaviour
     {
@@ -14,7 +14,7 @@ namespace CookieClicker.Economy
         [SerializeField] private Transform payoutPoint;
         [SerializeField, Min(1)] private long pricePerCookie = 1;
 
-        /// <summary>Raised with (amount, world position of the sale) for every cookie sold.</summary>
+        /// <summary>Raised with (total amount, world position of the sale) for every sale.</summary>
         public event Action<long, Vector3> Earned;
 
         /// <summary>Upgrades can raise the price at runtime.</summary>
@@ -32,18 +32,19 @@ namespace CookieClicker.Economy
 
         private void OnEnable()
         {
-            server.CookieServed += HandleCookieServed;
+            server.CookiesServed += HandleCookiesServed;
         }
 
         private void OnDisable()
         {
-            server.CookieServed -= HandleCookieServed;
+            server.CookiesServed -= HandleCookiesServed;
         }
 
-        private void HandleCookieServed(Customer customer)
+        private void HandleCookiesServed(Customer customer, int cookieCount)
         {
-            wallet.Add(pricePerCookie);
-            Earned?.Invoke(pricePerCookie, payoutPoint.position);
+            long amount = pricePerCookie * cookieCount;
+            wallet.Add(amount);
+            Earned?.Invoke(amount, payoutPoint.position);
         }
     }
 }

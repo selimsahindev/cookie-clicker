@@ -44,7 +44,7 @@ Settings that no upgrade controls yet. Select the object in the Hierarchy.
 | Customers → Customer Queue | Max Length | How many customers can stand in line. Default 4. |
 | Customers → Customer Queue | Spacing | Distance between customers in the line. |
 | Customers → Customer Spawner | Min / Max Cookies Wanted | Each customer wants a random amount in this range. Default 1–5. |
-| Customers → Cookie Server | Serve Interval | Seconds between handing two cookies to the front customer. Default 0.35. |
+| Customers → Cookie Server | Serve Interval | Minimum seconds between two hand-overs. A customer takes their whole remaining order in one hand-over when the cart has enough cookies. Default 0.35. |
 | Economy → Wallet | Starting Balance | Money at the start of the game. Default 0. |
 | Upgrades → Customers → Customer Attraction Effect | Spread | How random customer arrival is. `0.4` means ±40% around the average. |
 
