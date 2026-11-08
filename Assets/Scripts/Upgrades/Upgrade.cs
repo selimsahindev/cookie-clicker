@@ -1,4 +1,5 @@
 using System;
+using CookieClicker.Saving;
 using CookieClicker.Upgrades.Effects;
 using UnityEngine;
 
@@ -7,7 +8,7 @@ namespace CookieClicker.Upgrades
     /// <summary>
     /// The runtime state of one upgrade: its level, and pushing the matching value into the game through its effect.
     /// </summary>
-    public class Upgrade : MonoBehaviour
+    public class Upgrade : MonoBehaviour, ISaveable
     {
         [SerializeField] private UpgradeDefinition definition;
         [SerializeField] private UpgradeEffect effect;
@@ -35,6 +36,20 @@ namespace CookieClicker.Upgrades
             }
 
             level++;
+            ApplyEffect();
+            Changed?.Invoke(this);
+        }
+
+        public void Capture(SaveData data)
+        {
+            data.SetUpgradeLevel(definition.Id, level);
+        }
+
+        public void Restore(SaveData data)
+        {
+            int saved = data.GetUpgradeLevel(definition.Id, UpgradeDefinition.StartingLevel);
+            level = definition.ClampLevel(saved);
+
             ApplyEffect();
             Changed?.Invoke(this);
         }

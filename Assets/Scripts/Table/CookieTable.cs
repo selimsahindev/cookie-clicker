@@ -1,4 +1,5 @@
 using System;
+using CookieClicker.Saving;
 using UnityEngine;
 
 namespace CookieClicker.Table
@@ -6,7 +7,7 @@ namespace CookieClicker.Table
     /// <summary>
     /// Holds finished cookies up to a capacity. Bakers add to it, the server takes from it.
     /// </summary>
-    public class CookieTable : MonoBehaviour
+    public class CookieTable : MonoBehaviour, ISaveable
     {
         [SerializeField, Min(1)] private int capacity = 10;
 
@@ -58,6 +59,17 @@ namespace CookieClicker.Table
             count -= taken;
             NotifyChanged();
             return taken;
+        }
+
+        public void Capture(SaveData data)
+        {
+            data.cookiesOnCart = count;
+        }
+
+        public void Restore(SaveData data)
+        {
+            count = Mathf.Clamp(data.cookiesOnCart, 0, capacity);
+            NotifyChanged();
         }
 
         private void NotifyChanged()

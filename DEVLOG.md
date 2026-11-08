@@ -4,6 +4,13 @@ Progress notes for the cookie clicker, newest first. Screenshots live in `docs/d
 
 ---
 
+## 2026-11-08 · Save system
+
+- The game now remembers money, upgrade levels, cookies on the cart and the current bake progress between sessions. Customers in line are not saved; a fresh line forms on launch.
+- Saves go to `Application.persistentDataPath` as JSON with a version number. Each write goes to a temp file first and the previous save is kept as a backup, so a crash or a killed app can't leave a broken save.
+- Saves happen every 10 seconds, when the app goes to the background (the moment Android and iOS may kill it) and on quit.
+- New editor window *Cookie Clicker → Game Data* shows what is saved and has a reset button.
+
 ## 2026-11-08 · Bigger cookie stacks
 
 ![Bigger stacks on the cart](docs/devlog/2026-11-08-bigger-stacks.png)

@@ -1,4 +1,5 @@
 using System;
+using CookieClicker.Saving;
 using UnityEngine;
 
 namespace CookieClicker.Economy
@@ -6,7 +7,7 @@ namespace CookieClicker.Economy
     /// <summary>
     /// The player's money. Upgrades will spend from here later.
     /// </summary>
-    public class Wallet : MonoBehaviour
+    public class Wallet : MonoBehaviour, ISaveable
     {
         [SerializeField, Min(0)] private long startingBalance;
 
@@ -30,6 +31,17 @@ namespace CookieClicker.Economy
             }
 
             balance += amount;
+            Changed?.Invoke(balance);
+        }
+
+        public void Capture(SaveData data)
+        {
+            data.money = balance;
+        }
+
+        public void Restore(SaveData data)
+        {
+            balance = Math.Max(0, data.money);
             Changed?.Invoke(balance);
         }
 

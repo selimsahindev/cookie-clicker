@@ -61,3 +61,10 @@ Settings that no upgrade controls yet. Select the object in the Hierarchy.
 1. Create a definition: *Assets → Create → Cookie Clicker → Upgrade Definition*.
 2. Write an effect, a small `UpgradeEffect` subclass in `Assets/Scripts/Upgrades/Effects` that pushes the value into a game system.
 3. Add a child under `Upgrades` in the scene with the effect and an `Upgrade` component. Then add an `UpgradeButton` prefab to `HUD/UpgradeBar` and point it at the upgrade and the shop.
+
+## Save data
+
+- Money, upgrade levels, cookies on the cart and bake progress are saved to `save.json` in `Application.persistentDataPath`.
+- *Cookie Clicker → Game Data* shows the current save and resets it. *Cookie Clicker → Reset Game Data* resets it directly.
+- Upgrade levels are saved under the definition's file name (`BakeSpeed`, `CookiePrice`...). Renaming a definition asset resets that upgrade's saved level.
+- When balancing, reset the save so you start from Lv 1 and 0 $.

@@ -1,5 +1,6 @@
 using System;
 using CookieClicker.Common;
+using CookieClicker.Saving;
 using CookieClicker.Table;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace CookieClicker.Baking
     /// Bakes cookies nonstop and puts each one on the table. Taps speed up the current bake.
     /// Waits with a full ring while the table is full.
     /// </summary>
-    public class Baker : MonoBehaviour, IProgressSource
+    public class Baker : MonoBehaviour, IProgressSource, ISaveable
     {
         [SerializeField] private CookieTable table;
         [SerializeField, Min(0.05f)] private float bakeDuration = 1.5f;
@@ -55,6 +56,16 @@ namespace CookieClicker.Baking
         {
             progress = Mathf.Min(1f, progress + clickBoost);
             Boosted?.Invoke();
+        }
+
+        public void Capture(SaveData data)
+        {
+            data.bakeProgress = progress;
+        }
+
+        public void Restore(SaveData data)
+        {
+            progress = Mathf.Clamp01(data.bakeProgress);
         }
 
         private void Update()

@@ -36,12 +36,21 @@ namespace CookieClicker.Upgrades
         [Tooltip("C# format string for the value, for example {0:0.00}s or +{0:0%}.")]
         [SerializeField] private string valueFormat = "{0}";
 
+        /// <summary>Stable key used in save files: the asset's file name. Renaming the asset resets its saved level.</summary>
+        public string Id => name;
         public string DisplayName => displayName;
         public Sprite Icon => icon;
 
         public bool IsMaxed(int level)
         {
             return maxLevel > 0 && level >= maxLevel;
+        }
+
+        /// <summary>Keeps a level, for example one read from a save, inside the valid range.</summary>
+        public int ClampLevel(int level)
+        {
+            int clamped = Math.Max(StartingLevel, level);
+            return maxLevel > 0 ? Math.Min(clamped, maxLevel) : clamped;
         }
 
         /// <summary>Price of going from <paramref name="level"/> to the next level.</summary>

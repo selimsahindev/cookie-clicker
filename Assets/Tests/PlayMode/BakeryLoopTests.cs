@@ -19,6 +19,21 @@ namespace CookieClicker.Tests
         private const string SceneName = "Bakery";
         private const string ScreenshotEnvironmentVariable = "COOKIE_SCREENSHOT";
 
+        private IsolatedSaveStorage isolatedSave;
+
+        [SetUp]
+        public void SetUp()
+        {
+            isolatedSave = new IsolatedSaveStorage();
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            Time.timeScale = 1f;
+            isolatedSave.Dispose();
+        }
+
         [UnityTest]
         public IEnumerator BakerFillsTableAndCustomersGetServed()
         {
