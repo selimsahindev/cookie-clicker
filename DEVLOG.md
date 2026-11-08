@@ -4,6 +4,19 @@ Progress notes for the cookie clicker, newest first. Screenshots live in `docs/d
 
 ---
 
+## 2026-11-08 · Tastier cookies
+
+![Old cookie on the left, new one on the right](docs/devlog/2026-11-08-cookie-redraw.png)
+
+- Redrew the cookie: a warm golden dough gradient, a bumpy hand-made edge, glossy chocolate chunks, little baked cracks, crumbs and a sparkle.
+- Same size and pivot as before, so it drops into the cart stacks, speech bubbles and existing layout without changes.
+
+## 2026-11-08 · Upgrades
+
+- Added an upgrade bar at the bottom: Bake Speed, Cookie Price, Tap Power and Customers.
+- Each card shows the icon, level, current value and price. Cards fade out while you can't afford them.
+- Prices grow 15% per level. All balancing lives in `Assets/Data/Upgrades`, see `docs/ECONOMY.md`.
+
 ## 2026-11-08 · Outdoor street vendor and money
 
 ![Outdoor layout mockup](docs/devlog/2026-11-08-outdoor-layout-mockup.png)
