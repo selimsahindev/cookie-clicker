@@ -17,6 +17,7 @@ namespace CookieClicker.Saving
         public long money;
         public int cookiesOnCart;
         public float bakeProgress;
+        public long goalEarnings;
         public List<UpgradeLevel> upgrades = new List<UpgradeLevel>();
 
         [Serializable]

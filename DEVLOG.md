@@ -4,6 +4,16 @@ Progress notes for the cookie clicker, newest first. Screenshots live in `docs/d
 
 ---
 
+## 2026-11-08 · Goal bar
+
+![Goal bar above the money counter](docs/devlog/2026-11-08-dream-shop-bar.png)
+
+*Composed outside Unity to check the layout.*
+
+- A thin, flat bar along the top fills green toward a big earnings goal (10,000 $ for now), with a "Goal" title in Lilita One and the percentage on the right. It sits inside the device's safe area, so notches don't cover it.
+- It counts money earned from sales, so buying upgrades never moves it back. Progress is saved.
+- When it fills up, `LevelGoal.Completed` fires once. Moving on to the next level will hook in there later.
+
 ## 2026-11-08 · Glowing oven
 
 ![Oven idle on the left, baking on the right](docs/devlog/2026-11-08-oven-glow.png)

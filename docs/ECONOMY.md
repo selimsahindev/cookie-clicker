@@ -47,6 +47,7 @@ Settings that no upgrade controls yet. Select the object in the Hierarchy.
 | Customers → Customer Spawner | Min / Max Cookies Wanted | Each customer wants a random amount in this range. Default 1–5. |
 | Customers → Cookie Server | Serve Interval | Minimum seconds between two hand-overs. A customer takes their whole remaining order in one hand-over when the cart has enough cookies. Default 0.35. |
 | Economy → Wallet | Starting Balance | Money at the start of the game. Default 0. |
+| LevelGoal → Level Goal | Target Earnings | Money to earn from sales to fill the Dream Shop bar and finish the level. Default 10,000. |
 | Upgrades → Customers → Customer Attraction Effect | Spread | How random customer arrival is. `0.4` means ±40% around the average. |
 
 ## 3. Prefabs: `Assets/Prefabs`
@@ -64,7 +65,7 @@ Settings that no upgrade controls yet. Select the object in the Hierarchy.
 
 ## Save data
 
-- Money, upgrade levels, cookies on the cart and bake progress are saved to `save.json` in `Application.persistentDataPath`.
+- Money, upgrade levels, cookies on the cart, bake progress and Dream Shop progress are saved to `save.json` in `Application.persistentDataPath`.
 - *Cookie Clicker → Game Data* shows the current save and resets it. *Cookie Clicker → Reset Game Data* resets it directly.
 - Upgrade levels are saved under the definition's file name (`BakeSpeed`, `CookiePrice`...). Renaming a definition asset resets that upgrade's saved level.
 - When balancing, reset the save so you start from Lv 1 and 0 $.
