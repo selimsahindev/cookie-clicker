@@ -41,6 +41,7 @@ Settings that no upgrade controls yet. Select the object in the Hierarchy.
 | Object → Component | Field | Meaning |
 |---|---|---|
 | CookieCart → Cookie Table | Capacity | How many cookies fit on the cart before the vendor waits. Default 10. |
+| CookieCart/CookieStacks → Cookie Stack View | Cookie Scale, Stack Spacing, Cookie Height, Cookie Flatness, Cookies Per Stack | Look of the cookie stacks on the cart. Live-tunable in Play mode. |
 | Customers → Customer Queue | Max Length | How many customers can stand in line. Default 4. |
 | Customers → Customer Queue | Spacing | Distance between customers in the line. |
 | Customers → Customer Spawner | Min / Max Cookies Wanted | Each customer wants a random amount in this range. Default 1–5. |

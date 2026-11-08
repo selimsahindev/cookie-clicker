@@ -4,6 +4,15 @@ Progress notes for the cookie clicker, newest first. Screenshots live in `docs/d
 
 ---
 
+## 2026-11-08 · Bigger cookie stacks
+
+![Bigger stacks on the cart](docs/devlog/2026-11-08-bigger-stacks.png)
+
+*Composed outside Unity to check the fit.*
+
+- Cookies stacked on the cart are about 55% bigger, with wider spacing between stacks.
+- Stack size, spacing, height and flatness are on the `Cookie Stack View` component, and changes made there while the game runs show up live.
+
 ## 2026-11-08 · Whole orders in one go
 
 - When a customer reaches the cart, they take their entire order at once if enough cookies are ready, and pay the total in a single "+n $" popup.

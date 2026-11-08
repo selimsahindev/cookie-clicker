@@ -10,10 +10,14 @@ namespace CookieClicker.Table
     {
         [SerializeField] private CookieTable table;
         [SerializeField] private Sprite cookieSprite;
-        [SerializeField] private int cookiesPerStack = 5;
-        [SerializeField] private float stackSpacing = 0.55f;
-        [SerializeField] private float cookieHeight = 0.12f;
-        [SerializeField] private float cookieScale = 0.55f;
+        [SerializeField, Min(1)] private int cookiesPerStack = 5;
+        [Tooltip("Horizontal distance between two stacks.")]
+        [SerializeField] private float stackSpacing = 0.75f;
+        [Tooltip("Vertical distance between two cookies in a stack.")]
+        [SerializeField] private float cookieHeight = 0.17f;
+        [SerializeField] private float cookieScale = 0.85f;
+        [Tooltip("Height of a cookie relative to its width, so it reads as lying on the cart.")]
+        [SerializeField, Range(0.2f, 1f)] private float cookieFlatness = 0.6f;
         [SerializeField] private int sortingOrder = 20;
 
         private readonly List<SpriteRenderer> cookies = new List<SpriteRenderer>();
@@ -35,8 +39,28 @@ namespace CookieClicker.Table
 
             for (int i = 0; i < cookies.Count; i++)
             {
+                Place(cookies[i].transform, i);
                 cookies[i].gameObject.SetActive(i < count);
             }
+        }
+
+        /// <summary>Re-applies layout changes made in the Inspector while the game is running.</summary>
+        private void OnValidate()
+        {
+            if (!Application.isPlaying || table == null)
+            {
+                return;
+            }
+
+            Refresh(table.Count, table.Capacity);
+        }
+
+        private void Place(Transform cookie, int index)
+        {
+            int stack = index / cookiesPerStack;
+            int level = index % cookiesPerStack;
+            cookie.localPosition = new Vector3(stack * stackSpacing, level * cookieHeight, 0f);
+            cookie.localScale = new Vector3(cookieScale, cookieScale * cookieFlatness, 1f);
         }
 
         private void EnsureCookieCount(int amount)
@@ -49,13 +73,8 @@ namespace CookieClicker.Table
 
         private SpriteRenderer CreateCookie(int index)
         {
-            int stack = index / cookiesPerStack;
-            int level = index % cookiesPerStack;
-
             var cookie = new GameObject($"Cookie {index + 1}");
             cookie.transform.SetParent(transform, false);
-            cookie.transform.localPosition = new Vector3(stack * stackSpacing, level * cookieHeight, 0f);
-            cookie.transform.localScale = new Vector3(cookieScale, cookieScale * 0.6f, 1f);
 
             var spriteRenderer = cookie.AddComponent<SpriteRenderer>();
             spriteRenderer.sprite = cookieSprite;
