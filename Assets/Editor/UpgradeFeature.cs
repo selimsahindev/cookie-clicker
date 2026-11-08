@@ -6,10 +6,8 @@ using CookieClicker.UI;
 using CookieClicker.Upgrades;
 using CookieClicker.Upgrades.Effects;
 using UnityEditor;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static CookieClicker.EditorTools.BuildHelpers;
 using Object = UnityEngine.Object;
@@ -17,38 +15,22 @@ using Object = UnityEngine.Object;
 namespace CookieClicker.EditorTools
 {
     /// <summary>
-    /// Adds the upgrade shop and the bottom upgrade bar to the existing bakery scene without touching anything else.
-    /// Safe to run more than once: it does nothing if the shop is already there.
-    /// Command line:
-    /// Unity -batchmode -quit -projectPath . -executeMethod CookieClicker.EditorTools.UpgradeInstaller.InstallIntoBakeryScene
+    /// The upgrade shop and the bottom upgrade bar.
     /// </summary>
-    public static class UpgradeInstaller
+    internal class UpgradeFeature : ISceneFeature
     {
         private const string DefinitionsFolder = "Assets/Data/Upgrades";
         private const float BarHeight = 320f;
         private const float BarBottomMargin = 36f;
 
-        [MenuItem("Cookie Clicker/Install Upgrades")]
-        public static void InstallIntoBakeryScene()
+        public string Name => "Upgrades";
+
+        public bool IsInstalled()
         {
-            Scene scene = OpenBakeryScene();
-            if (Object.FindAnyObjectByType<UpgradeShop>() != null)
-            {
-                Debug.Log("Upgrades are already installed in the bakery scene.");
-                return;
-            }
-
-            SpriteImportSetup.ConfigureUnconfigured();
-            PrefabBuilder.BuildMissing();
-            Install();
-
-            EditorSceneManager.MarkSceneDirty(scene);
-            EditorSceneManager.SaveScene(scene);
-            Debug.Log("Upgrades installed.");
+            return Object.FindAnyObjectByType<UpgradeShop>() != null;
         }
 
-        /// <summary>Adds the upgrade objects to the scene that is currently open.</summary>
-        internal static void Install()
+        public void Install()
         {
             var baker = FindRequired<Baker>();
             var wallet = FindRequired<Wallet>();
@@ -71,22 +53,6 @@ namespace CookieClicker.EditorTools
             EnsureEventSystem();
             EnsureRaycaster(hud);
             CreateUpgradeBar(hud.transform, shop, upgrades);
-        }
-
-        private static Scene OpenBakeryScene()
-        {
-            Scene active = SceneManager.GetActiveScene();
-            if (active.path == ScenePath)
-            {
-                return active;
-            }
-
-            if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
-            {
-                throw new OperationCanceledException("Install cancelled: the open scene has unsaved changes.");
-            }
-
-            return EditorSceneManager.OpenScene(ScenePath, OpenSceneMode.Single);
         }
 
         private static Upgrade CreateUpgrade<TEffect>(Transform parent, UpgradeDefinition definition, Action<TEffect> wireEffect)

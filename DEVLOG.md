@@ -4,6 +4,14 @@ Progress notes for the cookie clicker, newest first. Screenshots live in `docs/d
 
 ---
 
+## 2026-11-08 · Glowing oven
+
+![Oven idle on the left, baking on the right](docs/devlog/2026-11-08-oven-glow.png)
+
+- The oven is now two layers: a dark idle oven and a warm glow (window light, halo, red-hot element, golden cookies).
+- While the vendor bakes, the glow fades in and flickers softly. It flashes brighter each time a cookie is done and fades out when baking stops, for example when the cart is full.
+- New features are added to the existing scene with one menu item: *Cookie Clicker → Install Missing Features*.
+
 ## 2026-11-08 · Save system
 
 - The game now remembers money, upgrade levels, cookies on the cart and the current bake progress between sessions. Customers in line are not saved; a fresh line forms on launch.

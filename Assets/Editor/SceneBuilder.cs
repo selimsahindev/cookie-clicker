@@ -88,7 +88,7 @@ namespace CookieClicker.EditorTools
             CookieServer server = CreateCustomers(table);
             (Wallet wallet, CashRegister cashRegister) = CreateEconomy(server);
             HudBuilder.Build(camera, wallet, cashRegister);
-            UpgradeInstaller.Install();
+            SceneFeatureInstaller.InstallMissingIntoOpenScene();
 
             EnsureFolder(Path.GetDirectoryName(ScenePath));
             EditorSceneManager.SaveScene(scene, ScenePath);

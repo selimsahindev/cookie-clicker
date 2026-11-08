@@ -7,11 +7,11 @@
   <circle cx="90" cy="70" r="10" fill="#FFFBF4" stroke="#4A2E22" stroke-width="3"/>
   <rect x="140" y="62" width="62" height="16" rx="8" fill="#5B3A29"/>
   <rect x="36" y="110" width="168" height="126" rx="18" fill="#5B3A29" stroke="#4A2E22" stroke-width="4"/>
-  <rect x="50" y="124" width="140" height="98" rx="12" fill="#FFB766"/>
-  <rect x="50" y="124" width="140" height="98" rx="12" fill="#FF8A3D" opacity="0.35"/>
+  <!-- unlit oven window; oven_glow.svg is drawn on top while baking -->
+  <rect x="50" y="124" width="140" height="98" rx="12" fill="#6B4A3A"/>
   <path d="M58 196 H182" stroke="#8A5E44" stroke-width="5" stroke-linecap="round"/>
-  <ellipse cx="88" cy="186" rx="18" ry="8" fill="#E8B36F" stroke="#7A4B2E" stroke-width="2"/>
-  <ellipse cx="132" cy="186" rx="18" ry="8" fill="#E8B36F" stroke="#7A4B2E" stroke-width="2"/>
-  <path d="M62 136 L80 136" stroke="#FFFBF4" stroke-width="5" stroke-linecap="round" opacity="0.7"/>
+  <ellipse cx="88" cy="186" rx="18" ry="8" fill="#A07650" stroke="#4A2E22" stroke-width="2"/>
+  <ellipse cx="132" cy="186" rx="18" ry="8" fill="#A07650" stroke="#4A2E22" stroke-width="2"/>
+  <path d="M62 136 L80 136" stroke="#FFFBF4" stroke-width="5" stroke-linecap="round" opacity="0.35"/>
   <rect x="70" y="240" width="100" height="10" rx="5" fill="#FFFBF4" stroke="#4A2E22" stroke-width="3"/>
 </svg>

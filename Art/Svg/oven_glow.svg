@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="280" viewBox="0 0 240 280">
+  <!-- Same canvas as oven.svg. Drawn on top of the oven while it is baking. -->
+  <defs>
+    <radialGradient id="fire" cx="0.5" cy="0.75" r="0.75">
+      <stop offset="0" stop-color="#FFF1B8"/>
+      <stop offset="0.5" stop-color="#FFC266"/>
+      <stop offset="1" stop-color="#FF8A3D"/>
+    </radialGradient>
+    <filter id="soft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+  <!-- warm halo spilling out of the window -->
+  <rect x="40" y="114" width="160" height="118" rx="20" fill="#FFB766" opacity="0.55" filter="url(#soft)"/>
+  <rect x="50" y="124" width="140" height="98" rx="12" fill="url(#fire)"/>
+  <!-- heating element -->
+  <path d="M60 212 Q75 204 90 212 T120 212 T150 212 T180 212" fill="none" stroke="#FF6A3D" stroke-width="4" stroke-linecap="round"/>
+  <path d="M58 196 H182" stroke="#8A5E44" stroke-width="5" stroke-linecap="round"/>
+  <ellipse cx="88" cy="186" rx="18" ry="8" fill="#F2B866" stroke="#7A4B2E" stroke-width="2"/>
+  <ellipse cx="132" cy="186" rx="18" ry="8" fill="#F2B866" stroke="#7A4B2E" stroke-width="2"/>
+  <circle cx="83" cy="185" r="2" fill="#5B3A29"/><circle cx="93" cy="187" r="2" fill="#5B3A29"/>
+  <circle cx="128" cy="185" r="2" fill="#5B3A29"/><circle cx="138" cy="187" r="2" fill="#5B3A29"/>
+  <path d="M62 136 L80 136" stroke="#FFFBF4" stroke-width="5" stroke-linecap="round" opacity="0.8"/>
+</svg>
