@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 543eb499081674e08a70b58e3429dbbb, type: 3}
+  m_Name: CookiePrice
+  m_EditorClassIdentifier: CookieClicker::CookieClicker.Upgrades.UpgradeDefinition
+  displayName: Cookie Price
+  icon: {fileID: 21300000, guid: bf64eb02353ae4c598fc8f67a514f0fb, type: 3}
+  baseCost: 25
+  costGrowth: 1.15
+  maxLevel: 0
+  baseValue: 1
+  growth: 0
+  valuePerLevel: 1
+  valueFormat: '{0:0} $'
