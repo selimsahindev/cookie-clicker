@@ -1680,10 +1680,11 @@ MonoBehaviour:
   whiskSpeed: 14
   whiskAngle: 22
   bounceHeight: 0.03
-  hopDuration: 0.3
-  hopHeight: 0.18
-  tapDuration: 0.12
-  tapSquash: 0.08
+  hopDuration: 0.25
+  hopHeight: 0.05
+  cheerAngle: 35
+  tapDuration: 0.1
+  tapSquash: 0.02
 --- !u!114 &1052879661
 MonoBehaviour:
   m_ObjectHideFlags: 0

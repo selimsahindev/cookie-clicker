@@ -8,7 +8,8 @@ namespace CookieClicker.Baking
 {
     /// <summary>
     /// Bakes cookies nonstop and puts each one on the table. Taps speed up the current bake.
-    /// Waits with a full ring while the table is full. The ring is hidden while the table is full.
+    /// While the table is full the baker stops baking: the ring hides, taps are ignored and
+    /// the animation rests until a cookie is sold.
     /// </summary>
     public class Baker : MonoBehaviour, IProgressSource, ISaveable
     {
@@ -23,8 +24,8 @@ namespace CookieClicker.Baking
 
         public float Progress => progress;
         public bool IsWaitingForSpace => progress >= 1f && !table.HasSpace;
-        public bool IsBaking => !IsWaitingForSpace;
-        public bool IsProgressVisible => table.HasSpace;
+        public bool IsBaking => table.HasSpace;
+        public bool IsProgressVisible => IsBaking;
 
         /// <summary>Seconds per cookie. Upgrades can lower this at runtime.</summary>
         public float BakeDuration
@@ -52,9 +53,14 @@ namespace CookieClicker.Baking
             }
         }
 
-        /// <summary>Instantly advances the current bake by <see cref="ClickBoost"/>.</summary>
+        /// <summary>Instantly advances the current bake by <see cref="ClickBoost"/>. Does nothing while the table is full.</summary>
         public void Boost()
         {
+            if (!IsBaking)
+            {
+                return;
+            }
+
             progress = Mathf.Min(1f, progress + clickBoost);
             Boosted?.Invoke();
         }

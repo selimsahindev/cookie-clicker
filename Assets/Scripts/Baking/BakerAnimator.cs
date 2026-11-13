@@ -4,7 +4,8 @@ namespace CookieClicker.Baking
 {
     /// <summary>
     /// Procedural animation for the baker: whisks while baking, rests while the table is full,
-    /// hops when a cookie is done and squashes on every tap.
+    /// gives a small hop when a cookie is done and a light squash on every tap.
+    /// Reactions are kept subtle so fast tapping doesn't make the baker jitter.
     /// </summary>
     public class BakerAnimator : MonoBehaviour
     {
@@ -19,16 +20,16 @@ namespace CookieClicker.Baking
         [SerializeField] private float bounceHeight = 0.03f;
 
         [Header("Reactions")]
-        [SerializeField] private float hopDuration = 0.3f;
-        [SerializeField] private float hopHeight = 0.18f;
-        [SerializeField] private float tapDuration = 0.12f;
-        [SerializeField] private float tapSquash = 0.08f;
+        [SerializeField] private float hopDuration = 0.25f;
+        [SerializeField] private float hopHeight = 0.05f;
+        [SerializeField] private float cheerAngle = 35f;
+        [SerializeField] private float tapDuration = 0.1f;
+        [SerializeField] private float tapSquash = 0.02f;
 
         private const float LeftArmRestAngle = -10f;
         private const float RightArmRestAngle = 10f;
         private const float LeftArmBakeAngle = -32f;
         private const float RightArmBakeAngle = 28f;
-        private const float CheerAngle = 70f;
 
         private Vector3 rigBasePosition;
         private float time;
@@ -54,11 +55,21 @@ namespace CookieClicker.Baking
 
         private void PlayHop()
         {
+            if (hopTimeLeft > 0f)
+            {
+                return;
+            }
+
             hopTimeLeft = hopDuration;
         }
 
         private void PlayTap()
         {
+            if (tapTimeLeft > 0f)
+            {
+                return;
+            }
+
             tapTimeLeft = tapDuration;
         }
 
@@ -90,8 +101,8 @@ namespace CookieClicker.Baking
                 rightAngle = RightArmRestAngle;
             }
 
-            leftArm.localRotation = Quaternion.Euler(0f, 0f, Mathf.Lerp(leftAngle, -CheerAngle, hop));
-            rightArm.localRotation = Quaternion.Euler(0f, 0f, Mathf.Lerp(rightAngle, CheerAngle, hop));
+            leftArm.localRotation = Quaternion.Euler(0f, 0f, Mathf.Lerp(leftAngle, -cheerAngle, hop));
+            rightArm.localRotation = Quaternion.Euler(0f, 0f, Mathf.Lerp(rightAngle, cheerAngle, hop));
         }
 
         private void AnimateBody(float hop, float tap)

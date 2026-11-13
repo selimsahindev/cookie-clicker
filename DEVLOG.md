@@ -4,6 +4,12 @@ Progress notes for the cookie clicker, newest first. Screenshots live in `docs/d
 
 ---
 
+## 2026-11-13 · Calmer vendor
+
+- Tapping no longer shakes the vendor around: the tap squash is much lighter, the "cookie done" hop is lower with a smaller arm raise, and a reaction that is already playing isn't restarted by the next tap.
+- While the cart is full the vendor really stops: no whisking, the oven light goes off, and taps are ignored (no boost, no tap animation) until a cookie is sold.
+- All reaction sizes (hop height, cheer angle, tap squash) are tunable on the `Baker Animator` component.
+
 ## 2026-11-13 · Cookie holder
 
 ![Wooden cookie holder with the 7/10 count](docs/devlog/2026-11-13-cookie-holder.png)

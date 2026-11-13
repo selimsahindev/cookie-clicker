@@ -84,6 +84,29 @@ namespace CookieClicker.Tests
 
             Assert.AreEqual(2, table.Count);
             Assert.IsTrue(baker.IsWaitingForSpace);
+            Assert.IsFalse(baker.IsBaking, "The baker should rest while the table is full.");
+        }
+
+        [UnityTest]
+        public IEnumerator TapsAreIgnoredWhileTableIsFull()
+        {
+            yield return SceneManager.LoadSceneAsync(SceneName);
+
+            UnityEngine.Object.FindAnyObjectByType<CustomerSpawner>().enabled = false;
+            var table = UnityEngine.Object.FindAnyObjectByType<CookieTable>();
+            var baker = UnityEngine.Object.FindAnyObjectByType<Baker>();
+            table.Capacity = 1;
+            baker.BakeDuration = 0.1f;
+            yield return new WaitForSeconds(0.5f);
+
+            int boosts = 0;
+            baker.Boosted += () => boosts++;
+            baker.BakeDuration = 1000f;
+            float before = baker.Progress;
+            baker.Boost();
+
+            Assert.AreEqual(0, boosts, "A tap on a full table should not trigger the bake animation.");
+            Assert.AreEqual(before, baker.Progress, 0.001f);
         }
 
         [UnityTest]
