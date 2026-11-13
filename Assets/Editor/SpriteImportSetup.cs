@@ -63,6 +63,38 @@ namespace CookieClicker.EditorTools
             settings.spriteAlignment = (int)SpriteAlignment.Custom;
             importer.SetTextureSettings(settings);
             importer.spritePivot = PivotFor(Path.GetFileNameWithoutExtension(path));
+            importer.spriteBorder = BorderFor(Path.GetFileNameWithoutExtension(path));
+        }
+
+        /// <summary>
+        /// Re-applies the slice border of a sprite that was imported before its border was known.
+        /// Sliced sprites need it to stretch without distorting their ends.
+        /// </summary>
+        public static void EnsureBorder(string spriteName)
+        {
+            string path = $"{BuildHelpers.SpritesFolder}/{spriteName}.png";
+            var importer = (TextureImporter)AssetImporter.GetAtPath(path);
+            Vector4 border = BorderFor(spriteName);
+            if (importer == null || importer.spriteBorder == border)
+            {
+                return;
+            }
+
+            importer.spriteBorder = border;
+            importer.SaveAndReimport();
+        }
+
+        /// <summary>Slice borders in texture pixels (left, bottom, right, top). Zero means the sprite isn't sliced.</summary>
+        private static Vector4 BorderFor(string spriteName)
+        {
+            switch (spriteName)
+            {
+                case "cookie_holder_back":
+                case "cookie_holder_front":
+                    return new Vector4(40f, 0f, 40f, 0f);
+                default:
+                    return Vector4.zero;
+            }
         }
 
         private static Vector2 PivotFor(string spriteName)

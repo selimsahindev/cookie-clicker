@@ -8,7 +8,7 @@ namespace CookieClicker.Baking
 {
     /// <summary>
     /// Bakes cookies nonstop and puts each one on the table. Taps speed up the current bake.
-    /// Waits with a full ring while the table is full.
+    /// Waits with a full ring while the table is full. The ring is hidden while the table is full.
     /// </summary>
     public class Baker : MonoBehaviour, IProgressSource, ISaveable
     {
@@ -24,6 +24,7 @@ namespace CookieClicker.Baking
         public float Progress => progress;
         public bool IsWaitingForSpace => progress >= 1f && !table.HasSpace;
         public bool IsBaking => !IsWaitingForSpace;
+        public bool IsProgressVisible => table.HasSpace;
 
         /// <summary>Seconds per cookie. Upgrades can lower this at runtime.</summary>
         public float BakeDuration

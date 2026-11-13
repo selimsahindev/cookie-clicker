@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="170" height="26" viewBox="0 0 170 26">
+  <!-- Front board of the wooden cookie holder. Sliced in Unity: 20px side borders, the middle stretches. -->
+  <rect x="2" y="2" width="166" height="22" rx="7" fill="#C98A5B" stroke="#4A2E22" stroke-width="3"/>
+  <path d="M14 7.5 H156" stroke="#E2B07E" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M12 20 H158" stroke="#A9683F" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="10" cy="13" r="2" fill="#4A2E22"/>
+  <circle cx="160" cy="13" r="2" fill="#4A2E22"/>
+</svg>

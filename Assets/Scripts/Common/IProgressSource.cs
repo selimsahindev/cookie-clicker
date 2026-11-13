@@ -6,5 +6,8 @@ namespace CookieClicker.Common
     public interface IProgressSource
     {
         float Progress { get; }
+
+        /// <summary>False while the progress is meaningless to the player, so views hide it.</summary>
+        bool IsProgressVisible { get; }
     }
 }

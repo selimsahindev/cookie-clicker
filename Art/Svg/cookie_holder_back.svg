@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="170" height="80" viewBox="0 0 170 80">
+  <!-- Back of the wooden cookie holder. Sliced in Unity: 20px side borders, the middle stretches. -->
+  <!-- back board -->
+  <rect x="12" y="12" width="146" height="66" fill="#A9683F" stroke="#4A2E22" stroke-width="3"/>
+  <path d="M14 34 H156 M14 56 H156" stroke="#8E5532" stroke-width="3"/>
+  <path d="M14 18 H156" stroke="#BF8152" stroke-width="3"/>
+  <!-- floor shade where the cookies stand -->
+  <rect x="13.5" y="66" width="143" height="10.5" fill="#7E4A2B" opacity="0.55"/>
+  <!-- side posts -->
+  <rect x="3" y="4" width="16" height="74" rx="6" fill="#B9774A" stroke="#4A2E22" stroke-width="3"/>
+  <rect x="151" y="4" width="16" height="74" rx="6" fill="#B9774A" stroke="#4A2E22" stroke-width="3"/>
+  <path d="M8 12 V70 M156 12 V70" stroke="#D29A6A" stroke-width="3" stroke-linecap="round"/>
+</svg>

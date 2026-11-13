@@ -4,6 +4,17 @@ Progress notes for the cookie clicker, newest first. Screenshots live in `docs/d
 
 ---
 
+## 2026-11-13 · Cookie holder
+
+![Wooden cookie holder with the 7/10 count](docs/devlog/2026-11-13-cookie-holder.png)
+
+*Composed outside Unity to check the fit.*
+
+- Cookies now stack inside a small wooden holder on the cart. Its front board covers the bottom of the stacks and shows a minimal "count/capacity" label, like 7/10.
+- The holder's boards are sliced sprites that stretch to fit every stack, so a future capacity upgrade only has to raise `CookieTable.Capacity`.
+- The progress ring above the vendor's head hides while the cart is full and comes back as soon as a cookie is sold.
+- Install with *Cookie Clicker → Install Missing Features*. Padding and floor height are on the `Cookie Holder View` component.
+
 ## 2026-11-13 · A livelier street
 
 ![New passers-by](docs/devlog/2026-11-08-pedestrians.png)

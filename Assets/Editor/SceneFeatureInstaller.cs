@@ -21,6 +21,7 @@ namespace CookieClicker.EditorTools
             new OvenAnimationFeature(),
             new LevelGoalFeature(),
             new PedestrianFeature(),
+            new CookieHolderFeature(),
         };
 
         [MenuItem("Cookie Clicker/Install Missing Features")]

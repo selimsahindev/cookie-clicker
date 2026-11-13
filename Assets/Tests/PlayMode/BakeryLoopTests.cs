@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.IO;
 using CookieClicker.Baking;
+using CookieClicker.Common;
 using CookieClicker.Customers;
 using CookieClicker.Economy;
 using CookieClicker.Table;
@@ -83,6 +84,36 @@ namespace CookieClicker.Tests
 
             Assert.AreEqual(2, table.Count);
             Assert.IsTrue(baker.IsWaitingForSpace);
+        }
+
+        [UnityTest]
+        public IEnumerator FullTableHidesRingAndShowsCount()
+        {
+            yield return SceneManager.LoadSceneAsync(SceneName);
+
+            UnityEngine.Object.FindAnyObjectByType<CustomerSpawner>().enabled = false;
+            var table = UnityEngine.Object.FindAnyObjectByType<CookieTable>();
+            var baker = UnityEngine.Object.FindAnyObjectByType<Baker>();
+            var ring = UnityEngine.Object.FindAnyObjectByType<ProgressRing>();
+            var countLabel = UnityEngine.Object.FindAnyObjectByType<CookieCountLabel>();
+            Assert.IsNotNull(countLabel, "Run Cookie Clicker > Install Missing Features to add the cookie holder.");
+            table.TakeCookies(table.Count);
+            table.Capacity = 2;
+            baker.BakeDuration = 0.1f;
+
+            yield return new WaitForSeconds(1f);
+
+            Assert.IsFalse(baker.IsProgressVisible);
+            foreach (LineRenderer line in ring.GetComponentsInChildren<LineRenderer>())
+            {
+                Assert.IsFalse(line.enabled, "The ring should hide while the table is full.");
+            }
+
+            Assert.AreEqual("2/2", countLabel.Text);
+
+            table.TakeCookies(1);
+            yield return null;
+            Assert.AreEqual("1/2", countLabel.Text);
         }
 
         [UnityTest]

@@ -4,6 +4,7 @@ namespace CookieClicker.Common
 {
     /// <summary>
     /// Draws a circular progress ring with two LineRenderers: a full track and a fill arc.
+    /// Hides itself while the source says its progress isn't worth showing.
     /// </summary>
     public class ProgressRing : MonoBehaviour
     {
@@ -16,6 +17,7 @@ namespace CookieClicker.Common
 
         private IProgressSource source;
         private float lastDrawnProgress = -1f;
+        private bool isShown = true;
 
         private void Awake()
         {
@@ -35,6 +37,12 @@ namespace CookieClicker.Common
                 return;
             }
 
+            SetShown(source.IsProgressVisible);
+            if (!isShown)
+            {
+                return;
+            }
+
             float progress = Mathf.Clamp01(source.Progress);
             if (Mathf.Approximately(progress, lastDrawnProgress))
             {
@@ -43,6 +51,19 @@ namespace CookieClicker.Common
 
             lastDrawnProgress = progress;
             DrawArc(fill, progress);
+        }
+
+        private void SetShown(bool shown)
+        {
+            if (shown == isShown)
+            {
+                return;
+            }
+
+            isShown = shown;
+            track.enabled = shown;
+            fill.enabled = false;
+            lastDrawnProgress = -1f;
         }
 
         private void DrawArc(LineRenderer line, float amount)

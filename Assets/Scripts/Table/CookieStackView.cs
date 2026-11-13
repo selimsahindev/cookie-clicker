@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,6 +23,23 @@ namespace CookieClicker.Table
 
         private readonly List<SpriteRenderer> cookies = new List<SpriteRenderer>();
 
+        /// <summary>Raised after the stacks were laid out again, for example when the capacity grows.</summary>
+        public event Action LayoutChanged;
+
+        /// <summary>Highest sorting order a cookie can use, so a front board can be drawn over all of them.</summary>
+        public int TopSortingOrder => sortingOrder + Mathf.Max(table.Capacity, cookies.Count);
+
+        /// <summary>Left and right edge (local x) of the row of stacks needed for the table's capacity.</summary>
+        public Vector2 RowExtents
+        {
+            get
+            {
+                int stackCount = Mathf.Max(1, Mathf.CeilToInt(table.Capacity / (float)cookiesPerStack));
+                float halfCookie = cookieSprite.bounds.extents.x * cookieScale;
+                return new Vector2(-halfCookie, (stackCount - 1) * stackSpacing + halfCookie);
+            }
+        }
+
         private void OnEnable()
         {
             table.Changed += Refresh;
@@ -42,6 +60,8 @@ namespace CookieClicker.Table
                 Place(cookies[i].transform, i);
                 cookies[i].gameObject.SetActive(i < count);
             }
+
+            LayoutChanged?.Invoke();
         }
 
         /// <summary>Re-applies layout changes made in the Inspector while the game is running.</summary>
