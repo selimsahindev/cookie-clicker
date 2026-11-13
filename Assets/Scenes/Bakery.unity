@@ -953,7 +953,11 @@ MonoBehaviour:
   customerPrefab: {fileID: 935353110998111861, guid: ca79852000f6445ce8ba48fe4bc8abaa, type: 3}
   queue: {fileID: 584238416}
   spawnPoint: {fileID: 1537709155}
+  street: {fileID: 1221208628}
   looks:
+  - {fileID: 21300000, guid: 2f2f5ce60ff3042edaad47659f15c8fe, type: 3}
+  - {fileID: 21300000, guid: 81aafa34e49a746b29a7da225da1bb1a, type: 3}
+  - {fileID: 21300000, guid: cca4a31f1244b4a2f820e0d214f78e0e, type: 3}
   - {fileID: 21300000, guid: d28f26e915e19417eb7a3882339585bb, type: 3}
   - {fileID: 21300000, guid: c1f1ae6a675e64b2cb4902599c155680, type: 3}
   - {fileID: 21300000, guid: d559c56cd750a4fdd97ff245d2cc66bb, type: 3}
@@ -2256,6 +2260,81 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1 &1221208626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1221208629}
+  - component: {fileID: 1221208628}
+  - component: {fileID: 1221208627}
+  m_Layer: 0
+  m_Name: Street
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1221208627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221208626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef1e912221cb4138b051ce0fd64b3a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: CookieClicker::CookieClicker.Ambience.PedestrianSpawner
+  pedestrianPrefab: {fileID: 1951116894110719040, guid: dd7282cd630ac4411868b8907dfd1fc2, type: 3}
+  street: {fileID: 1221208628}
+  looks:
+  - {fileID: 21300000, guid: 2f2f5ce60ff3042edaad47659f15c8fe, type: 3}
+  - {fileID: 21300000, guid: 81aafa34e49a746b29a7da225da1bb1a, type: 3}
+  - {fileID: 21300000, guid: cca4a31f1244b4a2f820e0d214f78e0e, type: 3}
+  - {fileID: 21300000, guid: d28f26e915e19417eb7a3882339585bb, type: 3}
+  - {fileID: 21300000, guid: c1f1ae6a675e64b2cb4902599c155680, type: 3}
+  - {fileID: 21300000, guid: d559c56cd750a4fdd97ff245d2cc66bb, type: 3}
+  - {fileID: 21300000, guid: de8db3bfb498747faa0eb0855982351e, type: 3}
+  spawnIntervalRange: {x: 1.5, y: 4}
+  scaleRange: {x: 0.95, y: 1.05}
+  maxPedestrians: 4
+--- !u!114 &1221208628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221208626}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51d21f6507a4e4e018b562333a171c26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: CookieClicker::CookieClicker.Common.Street
+  leftX: -7
+  rightX: 7
+  laneY: {x: 0.65, y: 0.8}
+  laneZ: -0.1
+  walkSpeedRange: {x: 1.8, y: 2.6}
+--- !u!4 &1221208629
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221208626}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1350628843
 GameObject:
   m_ObjectHideFlags: 0
@@ -3847,3 +3926,4 @@ SceneRoots:
   - {fileID: 1193684403}
   - {fileID: 998018145}
   - {fileID: 1075752501}
+  - {fileID: 1221208629}

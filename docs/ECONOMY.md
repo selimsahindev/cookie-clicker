@@ -27,10 +27,12 @@ Current setup:
 
 | Asset | Controls | Base | Per level | Base cost |
 |---|---|---|---|---|
-| BakeSpeed | Seconds per cookie | 1.5 s | × 0.9 (10% faster) | 10 $ |
+| BakeSpeed | Seconds per cookie | 4 s | × 0.88 (12% faster), max Lv 25 (≈0.2 s) | 10 $ |
 | CookiePrice | Money per sold cookie | 1 $ | + 1 $ | 25 $ |
 | TapPower | Share of a bake added per tap | 20% | + 5%, max Lv 17 (100%) | 15 $ |
-| Customers | Average seconds between new customers | 2.5 s | × 0.9 (10% more often) | 20 $ |
+| Customers | Average seconds between new customers | 9 s | × 0.88 (12% more often), max Lv 20 (≈0.8 s) | 20 $ |
+
+> The game starts slow on purpose: one cookie every 4 s and a customer about every 9 s. Upgrades are what make the stand busy. Tap Power is the early way to speed things up.
 
 > The upgrade's Lv 1 value **overrides** the same setting on the game component when play starts. To change the starting bake time, tap power, cookie price or customer rate, edit **Base Value** here, not the component.
 
@@ -48,13 +50,22 @@ Settings that no upgrade controls yet. Select the object in the Hierarchy.
 | Customers → Cookie Server | Serve Interval | Minimum seconds between two hand-overs. A customer takes their whole remaining order in one hand-over when the cart has enough cookies. Default 0.35. |
 | Economy → Wallet | Starting Balance | Money at the start of the game. Default 0. |
 | LevelGoal → Level Goal | Target Earnings | Money to earn from sales to fill the Dream Shop bar and finish the level. Default 10,000. |
+| Customers → Customer Spawner | Street | When set, customers walk in along the street from either side, like passers-by who decide to stop, and leave the way they were walking. When empty, they come from *SpawnPoint* and leave to *ExitPoint*. |
+| Street → Street | Left X / Right X | Where people enter and leave the screen. |
+| Street → Street | Lane Y | Random height range of the walking line. Set a bit below the customer line, so the street is in front of it. |
+| Street → Street | Lane Z | Slightly negative, so people on the street are drawn in front of the waiting line. |
+| Street → Street | Walk Speed Range | Walking speed of passers-by and of arriving customers. |
+| Street → Pedestrian Spawner | Spawn Interval Range, Max Pedestrians | How busy the street is. Passers-by are decoration only: they never buy. How many people stop to buy is the *Customers* upgrade. |
+| Street → Pedestrian Spawner | Scale Range | Small size variety among passers-by. |
 | Upgrades → Customers → Customer Attraction Effect | Spread | How random customer arrival is. `0.4` means ±40% around the average. |
 
 ## 3. Prefabs: `Assets/Prefabs`
 
 | Prefab → Component | Field | Meaning |
 |---|---|---|
-| Customer → Character Walker | Speed | Walking speed of customers. |
+| Customer → Character Walker | Speed | Walking speed of customers who come from *SpawnPoint*. Street customers use the Street's *Walk Speed Range*. |
+| Customer → Customer | Pause Before Leaving | Seconds a served customer stands still before walking off. |
+| Pedestrian | (look) | Passers-by. Same sorting order as customers. |
 | UpgradeButton | (layout, colors) | Look of every upgrade card at once. |
 
 ## Adding a new upgrade later

@@ -16,8 +16,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 1903a73c75dda4f8ebba890f208853c3, type: 3}
   baseCost: 10
   costGrowth: 1.15
-  maxLevel: 0
-  baseValue: 1.5
+  maxLevel: 25
+  baseValue: 4
   growth: 1
-  valuePerLevel: 0.9
+  valuePerLevel: 0.88
   valueFormat: '{0:0.00}s'

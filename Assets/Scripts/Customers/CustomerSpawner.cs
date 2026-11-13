@@ -1,15 +1,20 @@
+using CookieClicker.Common;
 using UnityEngine;
 
 namespace CookieClicker.Customers
 {
     /// <summary>
     /// Sends new customers into the queue every few seconds while there is room.
+    /// With a <see cref="Street"/> assigned, customers walk in along the street from either side,
+    /// like passers-by who decide to stop. Without one they walk in from the spawn point.
     /// </summary>
     public class CustomerSpawner : MonoBehaviour
     {
         [SerializeField] private Customer customerPrefab;
         [SerializeField] private CustomerQueue queue;
         [SerializeField] private Transform spawnPoint;
+        [Tooltip("Optional. Customers walk in along this street from both sides instead of from the spawn point.")]
+        [SerializeField] private Street street;
         [SerializeField] private Sprite[] looks;
         [SerializeField, Min(1)] private int minCookiesWanted = 1;
         [SerializeField, Min(1)] private int maxCookiesWanted = 5;
@@ -48,6 +53,11 @@ namespace CookieClicker.Customers
             Sprite look = looks[Random.Range(0, looks.Length)];
             int cookiesWanted = Random.Range(minCookiesWanted, maxCookiesWanted + 1);
             customer.Initialize(look, cookiesWanted);
+            if (street != null)
+            {
+                customer.EnterFromStreet(street.RandomCrossing(), street.RandomWalkSpeed());
+            }
+
             queue.Join(customer);
         }
     }

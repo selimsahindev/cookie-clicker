@@ -25,6 +25,12 @@ namespace CookieClicker.Customers
             }
         }
 
+        public void Show()
+        {
+            gameObject.SetActive(true);
+            PlayPop();
+        }
+
         public void Hide()
         {
             gameObject.SetActive(false);

@@ -94,6 +94,11 @@ namespace CookieClicker.EditorTools
             Apply(target, field, property => property.vector3Value = value);
         }
 
+        public static void SetVector2(Object target, string field, Vector2 value)
+        {
+            Apply(target, field, property => property.vector2Value = value);
+        }
+
         public static void SetSpriteArray(Object target, string field, string[] spriteNames)
         {
             Apply(target, field, property =>

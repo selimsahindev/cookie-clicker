@@ -1,3 +1,4 @@
+using CookieClicker.Ambience;
 using CookieClicker.Common;
 using CookieClicker.Customers;
 using CookieClicker.UI;
@@ -17,10 +18,17 @@ namespace CookieClicker.EditorTools
         public const string CustomerPrefabPath = PrefabsFolder + "/Customer.prefab";
         public const string MoneyPopupPrefabPath = PrefabsFolder + "/MoneyPopup.prefab";
         public const string UpgradeButtonPrefabPath = PrefabsFolder + "/UpgradeButton.prefab";
+        public const string PedestrianPrefabPath = PrefabsFolder + "/Pedestrian.prefab";
 
         private const string OutlinedFontMaterialPath = "Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Outline.mat";
 
         public static readonly string[] CustomerLooks = { "customer_mint", "customer_berry", "customer_sunny", "customer_sky" };
+        /// <summary>Everyone on the street, passers-by and customers alike, so buyers look like any other passer-by.</summary>
+        public static readonly string[] StreetLooks =
+        {
+            "pedestrian_hat", "pedestrian_ponytail", "pedestrian_cap",
+            "customer_mint", "customer_berry", "customer_sunny", "customer_sky"
+        };
 
         public static void BuildAll()
         {
@@ -28,6 +36,7 @@ namespace CookieClicker.EditorTools
             BuildCustomer();
             BuildMoneyPopup();
             BuildUpgradeButton();
+            BuildPedestrian();
         }
 
         /// <summary>Builds only the prefabs that do not exist yet, so manual edits are kept.</summary>
@@ -47,6 +56,11 @@ namespace CookieClicker.EditorTools
             if (!Exists(UpgradeButtonPrefabPath))
             {
                 BuildUpgradeButton();
+            }
+
+            if (!Exists(PedestrianPrefabPath))
+            {
+                BuildPedestrian();
             }
         }
 
@@ -134,6 +148,38 @@ namespace CookieClicker.EditorTools
             SetReference(popup, "canvasGroup", canvasGroup);
 
             SaveAndDestroy(root, MoneyPopupPrefabPath);
+        }
+
+        /// <summary>
+        /// Passers-by share the customers' sorting order. They walk at a slightly negative z,
+        /// so they pass in front of the line just like customers walking in from the street.
+        /// </summary>
+        private static void BuildPedestrian()
+        {
+            int customerOrder = CustomerBodySortingOrder();
+
+            var root = new GameObject("Pedestrian");
+            var visual = CreateChild(root.transform, "Visual", Vector3.zero);
+            var body = AddSprite(visual, LoadSprite(StreetLooks[0]), customerOrder);
+            var shadow = CreateChild(root.transform, "Shadow", new Vector3(0f, 0.05f, 0f));
+            shadow.transform.localScale = new Vector3(0.9f, 0.9f, 1f);
+            AddSprite(shadow, LoadSprite("shadow"), customerOrder - (SortingOrder.Customer - SortingOrder.CustomerShadow));
+
+            var walker = root.AddComponent<CharacterWalker>();
+            SetReference(walker, "visual", visual.transform);
+
+            var pedestrian = root.AddComponent<Pedestrian>();
+            SetReference(pedestrian, "body", body);
+
+            SaveAndDestroy(root, PedestrianPrefabPath);
+        }
+
+        private static int CustomerBodySortingOrder()
+        {
+            var customer = AssetDatabase.LoadAssetAtPath<GameObject>(CustomerPrefabPath);
+            Transform visual = customer != null ? customer.transform.Find("Visual") : null;
+            var body = visual != null ? visual.GetComponent<SpriteRenderer>() : null;
+            return body != null ? body.sortingOrder : SortingOrder.Customer;
         }
 
         private static void BuildUpgradeButton()

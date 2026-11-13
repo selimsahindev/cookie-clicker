@@ -37,17 +37,12 @@ namespace CookieClicker.Customers
             customer.WalkTo(SlotPosition(customers.Count - 1));
         }
 
-        public Customer RemoveFront()
+        public void Remove(Customer customer)
         {
-            Customer front = Front;
-            if (front == null)
+            if (customers.Remove(customer))
             {
-                return null;
+                MoveEveryoneUp();
             }
-
-            customers.RemoveAt(0);
-            MoveEveryoneUp();
-            return front;
         }
 
         private void MoveEveryoneUp()

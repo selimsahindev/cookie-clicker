@@ -63,10 +63,17 @@ namespace CookieClicker.Customers
 
             if (front.IsSatisfied)
             {
-                queue.RemoveFront();
+                front.Departed += HandleDeparted;
                 front.Leave(exitPoint.position);
                 CustomerSatisfied?.Invoke(front);
             }
+        }
+
+        /// <summary>The line moves up only once the served customer actually walks off.</summary>
+        private void HandleDeparted(Customer customer)
+        {
+            customer.Departed -= HandleDeparted;
+            queue.Remove(customer);
         }
     }
 }

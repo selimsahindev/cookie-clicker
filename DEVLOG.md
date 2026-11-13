@@ -4,6 +4,16 @@ Progress notes for the cookie clicker, newest first. Screenshots live in `docs/d
 
 ---
 
+## 2026-11-13 · A livelier street
+
+![New passers-by](docs/devlog/2026-11-08-pedestrians.png)
+
+- People now walk along the street in front of the cart, in both directions, at random speeds. Three new looks (hat, ponytail, cap) mix with the existing ones.
+- Only some of them stop to buy. New customers walk in along the street from either side, step into the line, and keep walking the way they came once served. Everyone else just passes by.
+- Customers stand still for a moment with their cookies before walking off. The line moves up only once they leave.
+- Slower start: a cookie takes 4 s (was 1.5 s) and a customer shows up about every 9 s (was 2.5 s). Bake Speed and Customers now improve 12% per level, so the stand gets busy through upgrades.
+- Install with *Cookie Clicker → Install Missing Features*. The lane and pacing live on the new `Street` object, see `docs/ECONOMY.md`.
+
 ## 2026-11-08 · Goal bar
 
 ![Goal bar above the money counter](docs/devlog/2026-11-08-dream-shop-bar.png)
