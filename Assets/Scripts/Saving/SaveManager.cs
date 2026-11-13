@@ -110,7 +110,7 @@ namespace CookieClicker.Saving
                 return;
             }
 
-            foreach (ISaveable saveable in FindSaveables())
+            foreach (ISaveable saveable in FindSaveables().OrderBy(saveable => saveable.RestoreOrder))
             {
                 saveable.Restore(data);
             }

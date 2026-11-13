@@ -92,6 +92,12 @@ namespace CookieClicker.EditorTools
                 case "cookie_holder_back":
                 case "cookie_holder_front":
                     return new Vector4(40f, 0f, 40f, 0f);
+                case "shop_window":
+                    return new Vector4(120f, 120f, 120f, 120f);
+                case "shop_row":
+                    return new Vector4(80f, 80f, 80f, 80f);
+                case "shop_tab":
+                    return new Vector4(72f, 72f, 72f, 72f);
                 default:
                     return Vector4.zero;
             }

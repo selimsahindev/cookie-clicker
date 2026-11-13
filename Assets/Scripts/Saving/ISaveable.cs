@@ -8,5 +8,8 @@ namespace CookieClicker.Saving
     {
         void Capture(SaveData data);
         void Restore(SaveData data);
+
+        /// <summary>Lower values are restored first. Things that raise limits (shop unlocks) restore before what those limits clamp.</summary>
+        int RestoreOrder => 0;
     }
 }

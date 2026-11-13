@@ -52,6 +52,11 @@ namespace CookieClicker.EditorTools
                 EditorGUILayout.LabelField($"Upgrade: {upgrade.id}", $"Lv {upgrade.level}");
             }
 
+            foreach (string unlock in data.unlocks)
+            {
+                EditorGUILayout.LabelField($"Unlocked: {unlock}", "Owned");
+            }
+
             EditorGUILayout.Space();
             EditorGUILayout.LabelField("Raw JSON", EditorStyles.boldLabel);
             scroll = EditorGUILayout.BeginScrollView(scroll, GUILayout.MinHeight(120));
@@ -84,7 +89,7 @@ namespace CookieClicker.EditorTools
         {
             bool confirmed = EditorUtility.DisplayDialog(
                 "Reset Game Data",
-                "This deletes the save file: money, upgrade levels and cookies on the cart.\n\nIt cannot be undone.",
+                "This deletes the save file: money, upgrade levels, shop unlocks and cookies on the cart.\n\nIt cannot be undone.",
                 "Delete Save",
                 "Cancel");
             if (!confirmed)

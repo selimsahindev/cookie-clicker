@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="60" height="70" viewBox="0 0 60 70">
+  <!-- Small padlock for things that can't be bought yet -->
+  <path d="M17 32 V22 Q17 8 30 8 Q43 8 43 22 V32" fill="none" stroke="#4A2E22" stroke-width="7" stroke-linecap="round"/>
+  <path d="M17 32 V22 Q17 8 30 8 Q43 8 43 22 V32" fill="none" stroke="#B9B0A6" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="8" y="30" width="44" height="34" rx="9" fill="#FFD27A" stroke="#4A2E22" stroke-width="5"/>
+  <circle cx="30" cy="44" r="4.5" fill="#4A2E22"/>
+  <path d="M30 46 V54" stroke="#4A2E22" stroke-width="4" stroke-linecap="round"/>
+</svg>

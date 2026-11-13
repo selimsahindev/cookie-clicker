@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <!-- Shop window. Sliced in Unity: 60px borders (120px at 2x), the middle stretches. -->
+  <rect x="8" y="16" width="184" height="180" rx="40" fill="#3B2419" opacity="0.22"/>
+  <rect x="8" y="6" width="184" height="180" rx="40" fill="#FFF4E4" stroke="#4A2E22" stroke-width="7"/>
+  <rect x="20" y="18" width="160" height="156" rx="30" fill="#FFFBF4"/>
+  <path d="M48 28 H152" stroke="#FFFFFF" stroke-width="10" stroke-linecap="round" opacity="0.9"/>
+</svg>

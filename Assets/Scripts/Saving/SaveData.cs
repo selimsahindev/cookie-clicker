@@ -19,6 +19,7 @@ namespace CookieClicker.Saving
         public float bakeProgress;
         public long goalEarnings;
         public List<UpgradeLevel> upgrades = new List<UpgradeLevel>();
+        public List<string> unlocks = new List<string>();
 
         [Serializable]
         public class UpgradeLevel
@@ -43,6 +44,19 @@ namespace CookieClicker.Saving
             }
 
             saved.level = level;
+        }
+
+        public bool HasUnlock(string id)
+        {
+            return unlocks.Contains(id);
+        }
+
+        public void AddUnlock(string id)
+        {
+            if (!HasUnlock(id))
+            {
+                unlocks.Add(id);
+            }
         }
     }
 }

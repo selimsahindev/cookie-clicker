@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="140" viewBox="0 0 160 140">
+  <!-- One item card in the shop list. Sliced in Unity: 40px borders (80px at 2x). -->
+  <rect x="4" y="12" width="152" height="124" rx="28" fill="#3B2419" opacity="0.14"/>
+  <rect x="4" y="4" width="152" height="124" rx="28" fill="#FFFFFF" stroke="#D9B48F" stroke-width="5"/>
+  <path d="M30 16 H130" stroke="#FFF4E4" stroke-width="8" stroke-linecap="round"/>
+</svg>

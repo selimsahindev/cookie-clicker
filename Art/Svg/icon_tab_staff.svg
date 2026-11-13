@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <!-- "Staff" tab: a puffy chef hat -->
+  <path d="M34 70 Q16 66 18 48 Q20 30 40 32 Q44 14 60 14 Q76 14 80 32 Q100 30 102 48 Q104 66 86 70 Z" fill="#FFFBF4" stroke="#4A2E22" stroke-width="5" stroke-linejoin="round"/>
+  <path d="M30 46 Q32 38 40 38" fill="none" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round"/>
+  <path d="M48 38 Q50 50 46 60 M72 38 Q70 50 74 60" fill="none" stroke="#E8D3BD" stroke-width="4" stroke-linecap="round"/>
+  <rect x="32" y="68" width="56" height="32" rx="8" fill="#FFFBF4" stroke="#4A2E22" stroke-width="5"/>
+  <path d="M34 82 H86" stroke="#F4A7A0" stroke-width="7"/>
+  <rect x="32" y="68" width="56" height="32" rx="8" fill="none" stroke="#4A2E22" stroke-width="5"/>
+</svg>

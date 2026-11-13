@@ -4,6 +4,17 @@ Progress notes for the cookie clicker, newest first. Screenshots live in `docs/d
 
 ---
 
+## 2026-11-13 · Shop
+
+![Shop window: Stand and Staff tabs](docs/devlog/2026-11-13-shop.png)
+
+*Composed outside Unity from the new sprites.*
+
+- A round shop button on the HUD opens a shop window with two tabs.
+- **Stand** sells one-time unlocks. The first one, *Bigger Holder* (250 $), raises the cart from 10 to 15 cookies and the wooden holder widens to fit. Unlocks are saved.
+- **Staff** shows characters to hire, with their role, wage per time unit and hiring price. The first one, Mia the helper baker (3 $ / min, 500 $), is locked until hiring is built.
+- Install with *Cookie Clicker → Install Missing Features*. Prices live in `Assets/Data/Shop` and `Assets/Data/Staff`, see `docs/ECONOMY.md`.
+
 ## 2026-11-13 · Calmer vendor
 
 - Tapping no longer shakes the vendor around: the tap squash is much lighter, the "cookie done" hop is lower with a smaller arm raise, and a reaction that is already playing isn't restarted by the next tap.

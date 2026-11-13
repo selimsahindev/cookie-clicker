@@ -36,7 +36,32 @@ Current setup:
 
 > The upgrade's Lv 1 value **overrides** the same setting on the game component when play starts. To change the starting bake time, tap power, cookie price or customer rate, edit **Base Value** here, not the component.
 
-## 2. Scene components: `Assets/Scenes/Bakery.unity`
+## 2. Shop: `Assets/Data/Shop` and `Assets/Data/Staff`
+
+The shop button on the HUD opens a window with two tabs.
+
+**Stand** holds one-time unlocks (`UnlockDefinition` assets in `Assets/Data/Shop`):
+
+| Field | Meaning |
+|---|---|
+| Display Name | Title on the card. |
+| Icon | Picture on the card. |
+| Price | One-time price. |
+| Description | Short line under the title. |
+
+| Asset | What it does | Price |
+|---|---|---|
+| BiggerHolder | Raises the cart capacity from 10 to 15. The wooden holder widens to fit. The new capacity is the *Capacity* field on `Shop → BiggerHolder → Holder Capacity Effect`. | 250 $ |
+
+**Staff** shows hireable characters (`EmployeeDefinition` assets in `Assets/Data/Staff`): Display Name, Icon (portrait), Price (hiring price), Role, Wage and Wage Unit (minute, hour, day). Hiring isn't built yet, so the card's price button is locked.
+
+| Asset | Role | Wage | Price |
+|---|---|---|---|
+| Mia | Helper baker | 3 $ / min | 500 $ |
+
+Bought unlocks are saved and applied before the cookies on the cart load, so a full bigger holder stays full after a restart.
+
+## 3. Scene components: `Assets/Scenes/Bakery.unity`
 
 Settings that no upgrade controls yet. Select the object in the Hierarchy.
 
@@ -59,7 +84,7 @@ Settings that no upgrade controls yet. Select the object in the Hierarchy.
 | Street → Pedestrian Spawner | Scale Range | Small size variety among passers-by. |
 | Upgrades → Customers → Customer Attraction Effect | Spread | How random customer arrival is. `0.4` means ±40% around the average. |
 
-## 3. Prefabs: `Assets/Prefabs`
+## 4. Prefabs: `Assets/Prefabs`
 
 | Prefab → Component | Field | Meaning |
 |---|---|---|
@@ -67,6 +92,7 @@ Settings that no upgrade controls yet. Select the object in the Hierarchy.
 | Customer → Customer | Pause Before Leaving | Seconds a served customer stands still before walking off. |
 | Pedestrian | (look) | Passers-by. Same sorting order as customers. |
 | UpgradeButton | (layout, colors) | Look of every upgrade card at once. |
+| ShopRow | (layout, colors) | Look of every card in the shop at once. |
 
 ## Adding a new upgrade later
 
@@ -74,9 +100,15 @@ Settings that no upgrade controls yet. Select the object in the Hierarchy.
 2. Write an effect, a small `UpgradeEffect` subclass in `Assets/Scripts/Upgrades/Effects` that pushes the value into a game system.
 3. Add a child under `Upgrades` in the scene with the effect and an `Upgrade` component. Then add an `UpgradeButton` prefab to `HUD/UpgradeBar` and point it at the upgrade and the shop.
 
+## Adding a new shop unlock later
+
+1. Create a definition: *Assets → Create → Cookie Clicker → Unlock Definition* in `Assets/Data/Shop`.
+2. Write an effect, a small `UnlockEffect` subclass in `Assets/Scripts/Shopping/Effects` that changes the game once bought.
+3. Add a child under `Shop` in the scene with the effect and an `Unlockable` component. Then drop a `ShopRow` prefab into `HUD/ShopPanel/Content/Window/Pages/StandPage`, add an `Unlock Offer View` to it and point it at the unlockable, the shop, the row and its Pop Animation.
+
 ## Save data
 
-- Money, upgrade levels, cookies on the cart, bake progress and Dream Shop progress are saved to `save.json` in `Application.persistentDataPath`.
+- Money, upgrade levels, shop unlocks, cookies on the cart, bake progress and Dream Shop progress are saved to `save.json` in `Application.persistentDataPath`.
 - *Cookie Clicker → Game Data* shows the current save and resets it. *Cookie Clicker → Reset Game Data* resets it directly.
 - Upgrade levels are saved under the definition's file name (`BakeSpeed`, `CookiePrice`...). Renaming a definition asset resets that upgrade's saved level.
 - When balancing, reset the save so you start from Lv 1 and 0 $.

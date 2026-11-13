@@ -1,6 +1,10 @@
+using System;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 namespace CookieClicker.EditorTools
 {
@@ -124,7 +128,54 @@ namespace CookieClicker.EditorTools
             AssetDatabase.CreateFolder(parent, Path.GetFileName(folder));
         }
 
-        private static void Apply(Object target, string field, System.Action<SerializedProperty> assign)
+        /// <summary>Finds a component the open scene must already have, or explains what is missing.</summary>
+        public static T FindRequired<T>() where T : Object
+        {
+            T found = Object.FindAnyObjectByType<T>();
+            if (found == null)
+            {
+                throw new InvalidOperationException($"The bakery scene has no {typeof(T).Name}.");
+            }
+
+            return found;
+        }
+
+        /// <summary>Loads a data asset, or creates and configures it if missing. Existing assets keep their Inspector tuning.</summary>
+        public static T LoadOrCreateAsset<T>(string folder, string assetName, Action<T> configure) where T : ScriptableObject
+        {
+            string path = $"{folder}/{assetName}.asset";
+            var asset = AssetDatabase.LoadAssetAtPath<T>(path);
+            if (asset != null)
+            {
+                return asset;
+            }
+
+            EnsureFolder(folder);
+            asset = ScriptableObject.CreateInstance<T>();
+            configure(asset);
+            AssetDatabase.CreateAsset(asset, path);
+            return asset;
+        }
+
+        public static void EnsureEventSystem()
+        {
+            if (Object.FindAnyObjectByType<EventSystem>() != null)
+            {
+                return;
+            }
+
+            new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
+        }
+
+        public static void EnsureRaycaster(Canvas canvas)
+        {
+            if (canvas.GetComponent<GraphicRaycaster>() == null)
+            {
+                canvas.gameObject.AddComponent<GraphicRaycaster>();
+            }
+        }
+
+        private static void Apply(Object target, string field, Action<SerializedProperty> assign)
         {
             var serialized = new SerializedObject(target);
             SerializedProperty property = serialized.FindProperty(field);

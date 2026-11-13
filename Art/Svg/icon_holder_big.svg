@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="120" viewBox="0 0 160 120">
+  <!-- Shop icon: the wider wooden holder with three cookie stacks and a "+" badge -->
+  <rect x="14" y="44" width="132" height="54" fill="#A9683F" stroke="#4A2E22" stroke-width="4"/>
+  <path d="M16 62 H144 M16 80 H144" stroke="#8E5532" stroke-width="3"/>
+  <rect x="6" y="38" width="14" height="62" rx="5" fill="#B9774A" stroke="#4A2E22" stroke-width="4"/>
+  <rect x="140" y="38" width="14" height="62" rx="5" fill="#B9774A" stroke="#4A2E22" stroke-width="4"/>
+  <g stroke="#4A2E22" stroke-width="3.5">
+    <ellipse cx="40" cy="86" rx="18" ry="7" fill="#E0A458"/>
+    <ellipse cx="40" cy="74" rx="18" ry="7" fill="#E0A458"/>
+    <ellipse cx="40" cy="62" rx="18" ry="7" fill="#E9B46A"/>
+    <ellipse cx="80" cy="86" rx="18" ry="7" fill="#E0A458"/>
+    <ellipse cx="80" cy="74" rx="18" ry="7" fill="#E0A458"/>
+    <ellipse cx="80" cy="62" rx="18" ry="7" fill="#E0A458"/>
+    <ellipse cx="80" cy="50" rx="18" ry="7" fill="#E9B46A"/>
+    <ellipse cx="120" cy="86" rx="18" ry="7" fill="#E0A458"/>
+    <ellipse cx="120" cy="74" rx="18" ry="7" fill="#E9B46A"/>
+  </g>
+  <g fill="#5A3624">
+    <circle cx="35" cy="61" r="2.2"/><circle cx="45" cy="63" r="2"/>
+    <circle cx="75" cy="49" r="2.2"/><circle cx="86" cy="51" r="2"/>
+    <circle cx="115" cy="73" r="2.2"/><circle cx="125" cy="75" r="2"/>
+  </g>
+  <rect x="4" y="94" width="152" height="20" rx="7" fill="#C98A5B" stroke="#4A2E22" stroke-width="4"/>
+  <path d="M16 99.5 H144" stroke="#E2B07E" stroke-width="2.5" stroke-linecap="round"/>
+  <circle cx="134" cy="22" r="18" fill="#9ED39A" stroke="#2F4A30" stroke-width="4"/>
+  <path d="M134 13 V31 M125 22 H143" stroke="#2F4A30" stroke-width="5" stroke-linecap="round"/>
+</svg>

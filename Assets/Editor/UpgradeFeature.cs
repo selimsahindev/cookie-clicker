@@ -7,7 +7,6 @@ using CookieClicker.Upgrades;
 using CookieClicker.Upgrades.Effects;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using static CookieClicker.EditorTools.BuildHelpers;
 using Object = UnityEngine.Object;
@@ -70,61 +69,26 @@ namespace CookieClicker.EditorTools
 
         private static UpgradeDefinition BakeSpeedDefinition()
         {
-            return LoadOrCreateDefinition("BakeSpeed", definition => definition.Configure(
+            return LoadOrCreateAsset<UpgradeDefinition>(DefinitionsFolder, "BakeSpeed", definition => definition.Configure(
                 "Bake Speed", LoadSprite("icon_bake_speed"), 10, 1.5f, UpgradeDefinition.ValueGrowth.Multiply, 0.9f, "{0:0.00}s"));
         }
 
         private static UpgradeDefinition CookiePriceDefinition()
         {
-            return LoadOrCreateDefinition("CookiePrice", definition => definition.Configure(
+            return LoadOrCreateAsset<UpgradeDefinition>(DefinitionsFolder, "CookiePrice", definition => definition.Configure(
                 "Cookie Price", LoadSprite("icon_price"), 25, 1f, UpgradeDefinition.ValueGrowth.Add, 1f, "{0:0} $"));
         }
 
         private static UpgradeDefinition TapPowerDefinition()
         {
-            return LoadOrCreateDefinition("TapPower", definition => definition.Configure(
+            return LoadOrCreateAsset<UpgradeDefinition>(DefinitionsFolder, "TapPower", definition => definition.Configure(
                 "Tap Power", LoadSprite("icon_tap"), 15, 0.2f, UpgradeDefinition.ValueGrowth.Add, 0.05f, "+{0:0%}", 17));
         }
 
         private static UpgradeDefinition CustomerAttractionDefinition()
         {
-            return LoadOrCreateDefinition("Customers", definition => definition.Configure(
+            return LoadOrCreateAsset<UpgradeDefinition>(DefinitionsFolder, "Customers", definition => definition.Configure(
                 "Customers", LoadSprite("icon_customers"), 20, 2.5f, UpgradeDefinition.ValueGrowth.Multiply, 0.9f, "{0:0.0}s"));
-        }
-
-        /// <summary>Existing definitions are reused as they are, so balancing done in the Inspector is kept.</summary>
-        private static UpgradeDefinition LoadOrCreateDefinition(string assetName, Action<UpgradeDefinition> configure)
-        {
-            string path = $"{DefinitionsFolder}/{assetName}.asset";
-            var definition = AssetDatabase.LoadAssetAtPath<UpgradeDefinition>(path);
-            if (definition != null)
-            {
-                return definition;
-            }
-
-            EnsureFolder(DefinitionsFolder);
-            definition = ScriptableObject.CreateInstance<UpgradeDefinition>();
-            configure(definition);
-            AssetDatabase.CreateAsset(definition, path);
-            return definition;
-        }
-
-        private static void EnsureEventSystem()
-        {
-            if (Object.FindAnyObjectByType<EventSystem>() != null)
-            {
-                return;
-            }
-
-            new GameObject("EventSystem", typeof(EventSystem), typeof(StandaloneInputModule));
-        }
-
-        private static void EnsureRaycaster(Canvas canvas)
-        {
-            if (canvas.GetComponent<GraphicRaycaster>() == null)
-            {
-                canvas.gameObject.AddComponent<GraphicRaycaster>();
-            }
         }
 
         private static void CreateUpgradeBar(Transform canvas, UpgradeShop shop, Upgrade[] upgrades)
@@ -153,17 +117,6 @@ namespace CookieClicker.EditorTools
                 SetReference(button, "upgrade", upgrade);
                 SetReference(button, "shop", shop);
             }
-        }
-
-        private static T FindRequired<T>() where T : Object
-        {
-            T found = Object.FindAnyObjectByType<T>();
-            if (found == null)
-            {
-                throw new InvalidOperationException($"The bakery scene has no {typeof(T).Name}.");
-            }
-
-            return found;
         }
     }
 }

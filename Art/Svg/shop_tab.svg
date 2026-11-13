@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="100" viewBox="0 0 120 100">
+  <!-- Shop tab. Sliced in Unity: 36px borders (72px at 2x). Tinted darker while not selected. -->
+  <rect x="4" y="12" width="112" height="84" rx="28" fill="#3B2419" opacity="0.2"/>
+  <rect x="4" y="4" width="112" height="84" rx="28" fill="#FFFBF4" stroke="#4A2E22" stroke-width="6"/>
+  <path d="M30 16 H90" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" opacity="0.9"/>
+</svg>

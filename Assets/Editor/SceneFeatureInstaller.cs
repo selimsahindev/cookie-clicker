@@ -22,6 +22,7 @@ namespace CookieClicker.EditorTools
             new LevelGoalFeature(),
             new PedestrianFeature(),
             new CookieHolderFeature(),
+            new ShopFeature(),
         };
 
         [MenuItem("Cookie Clicker/Install Missing Features")]
